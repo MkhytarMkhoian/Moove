@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+apply from: "${rootProject.projectDir}/gradle/base-android-config.gradle"
+apply from: "${rootProject.projectDir}/gradle/compose-android-config.gradle"
+
+
+android {
+    namespace 'com.moove.shared'
+}
+
+dependencies {
+
+    api project(':design-system')
+
+    // region kotlin
+    implementation libs.kotlin.reflect
+    implementation libs.kotlin.coroutines.playservices
+    // endregion
+
+    // region AndroidX
+    api libs.androidx.appcompat
+    api libs.androidx.core
+    api libs.androidx.fragment
+    api libs.bundles.androidx.navigation
+    api libs.bundles.androidx.lifecycle
+    api libs.bundles.androidx.compose
+    api libs.paging.runtime
+    api libs.androidx.browser
+    // endregion
+
+    // region presentation
+    api libs.orbit.viewmodel
+    api libs.orbit.compose
+    // endregion
+
+    // region ui
+    api libs.google.material
+    api libs.androidx.constraintlayout
+    api libs.androidx.swiperefreshlayout
+    api libs.androidx.viewpager
+    api libs.bundles.google.accompanist
+    api libs.bundles.paging
+    api libs.coil
+    // endregion
+
+    // region di
+    api libs.bundles.koin
+    // endregion
+
+    // region io
+    api libs.retrofit.core
+    api libs.retrofit.converter.moshi
+    api libs.moshi.kotlin
+    api libs.moshi.adapters
+    api libs.moshi.adapters.x
+    api libs.moshi.sealed.runtime
+    ksp libs.moshi.compiler
+    // endregion
+
+    // region Tests
+    testImplementation libs.bundles.tests.unit
+    testImplementation libs.bundles.tests.viewmodel
+    testImplementation libs.bundles.kointest
+    androidTestImplementation libs.bundles.tests.android
+    // endregion
+}

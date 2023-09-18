@@ -1,0 +1,25 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "${rootProject.projectDir}/gradle/base-android-config.gradle"
+apply from: "${rootProject.projectDir}/gradle/compose-android-config.gradle"
+
+android {
+    namespace 'com.moove.design_system'
+}
+
+dependencies {
+
+    // region Google
+    implementation libs.google.material
+    implementation libs.bundles.google.accompanist
+    // endregion
+
+    // region AndroidX
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.core
+    implementation libs.bundles.androidx.compose
+    // endregion
+}

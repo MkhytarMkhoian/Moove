@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+apply from: "${rootProject.projectDir}/gradle/base-android-config.gradle"
+apply from: "${rootProject.projectDir}/gradle/compose-android-config.gradle"
+
+android {
+    namespace 'com.moove'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
+    // region Project
+    implementation project(':shared')
+    implementation project(':tickets')
+    // endregion
+
+    // region AndroidX
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.core
+    implementation libs.androidx.fragment
+    implementation libs.bundles.androidx.navigation
+    implementation libs.bundles.androidx.lifecycle
+    // endregion
+
+    // region Kotlin
+    implementation libs.kotlin.coroutines.core
+    implementation libs.kotlin.coroutines.android
+    implementation libs.kotlin.reflect
+    // endregion
+
+    // region di
+    implementation libs.bundles.koin
+    // endregion
+
+    // region presentation
+    implementation libs.orbit.viewmodel
+    testImplementation libs.orbit.test
+    // endregion
+
+    // region UI
+    implementation libs.google.material
+    implementation libs.androidx.splashscreen
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.swiperefreshlayout
+    // endregion
+
+    // region Tests
+    testImplementation libs.bundles.tests.unit
+    testImplementation libs.bundles.tests.viewmodel
+    androidTestImplementation libs.bundles.tests.android
+    // endregion
+}

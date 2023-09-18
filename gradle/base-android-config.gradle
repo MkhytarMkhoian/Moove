@@ -1,0 +1,70 @@
+android {
+    compileSdkVersion androidSetup.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion androidSetup.minSdkVersion
+        targetSdkVersion androidSetup.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        review {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ['release']
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+        coreLibraryDesugaringEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = '11'
+        freeCompilerArgs += [
+                '-opt-in=kotlin.RequiresOptIn',
+                '-opt-in=kotlin.ExperimentalStdlibApi',
+                '-opt-in=kotlin.contracts.ExperimentalContracts',
+                '-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi',
+                '-opt-in=kotlinx.coroutines.FlowPreview',
+        ]
+    }
+
+    buildFeatures {
+        dataBinding false
+        viewBinding true
+    }
+
+    lintOptions {
+        abortOnError true
+        ignoreWarnings false
+        disable 'WrongConstant',
+                'ContentDescription',
+                'VectorPath', 'VectorRaster',
+                'Typos', 'TypographyDashes', 'TypographyEllipsis', 'PluralsCandidate', 'ButtonCase'
+        lintConfig file("${rootProject.projectDir}/lint.xml")
+    }
+}
+
+tasks.withType(Test) {
+    testLogging {
+        events "failed", "standardError"
+    }
+}
+
+dependencies {
+    // region Tools
+    coreLibraryDesugaring libs.android.tools.desugar
+    // endregion
+}

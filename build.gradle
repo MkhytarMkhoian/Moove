@@ -1,0 +1,20 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.androidSetup = [
+            'compileSdkVersion': 33,
+            'minSdkVersion'    : 23,
+            'targetSdkVersion': 33
+    ]
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}"
+        classpath "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${libs.versions.ksp.get()}"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${libs.versions.navigation.get()}"
+    }
+}
