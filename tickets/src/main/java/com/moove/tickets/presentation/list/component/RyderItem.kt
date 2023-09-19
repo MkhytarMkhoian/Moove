@@ -33,8 +33,7 @@ fun RyderItem(
         ryder.subtext?.let {
             Text(
                 text = ryder.subtext,
-                modifier = Modifier.padding(top = Spacing.XXS),
-                style = AppTheme.typography.material.body1,
+                style = AppTheme.typography.material.subtitle1,
                 maxLines = 1,
             )
         }
@@ -46,7 +45,7 @@ fun RyderItem(
 private fun PreviewRyderItem() {
     AppTheme {
         RyderItem(
-            ryder = fakeRyderModels.first(),
+            ryder = fakeRyderModels[1],
             onClick = {}
         )
     }

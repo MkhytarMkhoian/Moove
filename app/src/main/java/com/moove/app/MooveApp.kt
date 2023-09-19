@@ -4,6 +4,7 @@ import android.app.Application
 import com.moove.app.di.coroutineModule
 import com.moove.app.di.exceptionsModule
 import com.moove.app.di.mainModule
+import com.moove.app.di.netModule
 import com.moove.app.di.ticketsModule
 import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
@@ -27,6 +28,7 @@ open class MooveApp : Application() {
                 coroutineModule,
                 exceptionsModule,
                 ticketsModule,
+                netModule,
             )
         }
     }
