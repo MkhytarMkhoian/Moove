@@ -16,3 +16,8 @@ fun Fare.asPresentation() = FareModel(
 )
 
 fun List<Fare>.asPresentation(): List<FareModel> = map { it.asPresentation() }
+
+fun FareModel.asDomain() = Fare(
+    description = description,
+    price = price,
+)

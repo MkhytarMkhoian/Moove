@@ -23,4 +23,8 @@ class TicketsDataRepository(
         val data = ticketsLocalDataSource.getData()
         data[ryderId]?.fares?.asDomain() ?: emptyList()
     }
+
+    override suspend fun buyTicket(ryderId: String, fare: Fare, totalCount: Int) {
+        // Implement request to the server
+    }
 }

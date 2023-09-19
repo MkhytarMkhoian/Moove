@@ -4,4 +4,6 @@
     <string name="select_fare_title">Select Fare</string>
     <string name="confirm_selection_title">Confirm Selection</string>
     <string name="global_snackbar_genericerror_title">An error has occurred.</string>
+    <string name="confirm_button_text">Buy %s Tickets - %s</string>
+    <string name="confirm_success">Success</string>
 </resources>

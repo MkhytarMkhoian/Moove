@@ -12,7 +12,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.moove.design_system.compose.AppTheme
 import com.moove.design_system.compose.Scaffold
 import com.moove.shared.R
+import com.moove.shared.presentation.compose.component.ScreenContent
 import com.moove.shared.presentation.compose.component.ScreenContentStatus
+import com.moove.shared.presentation.compose.component.isLoading
 import com.moove.tickets.presentation.fare.component.FareList
 import com.moove.tickets.presentation.fare.model.FareModel
 import com.moove.tickets.presentation.fare.model.fakeFareModels
@@ -35,10 +37,15 @@ fun FareListScreen(
             )
         },
         content = {
-            FareList(
-                fares = uiState.fares,
-                onClick = onFareClick
-            )
+            ScreenContent(
+                status = uiState.status,
+                forceLoading = uiState.status.isLoading,
+            ) {
+                FareList(
+                    fares = uiState.fares,
+                    onClick = onFareClick
+                )
+            }
         }
     )
 }

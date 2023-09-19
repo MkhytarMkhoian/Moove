@@ -29,6 +29,33 @@
         <argument
             android:name="ryderId"
             app:argType="string" />
+
+        <action
+            android:id="@+id/action_fareListFragment_to_confirmationFragment"
+            app:destination="@id/confirmationFragment">
+            <argument
+                android:name="ryderId"
+                app:argType="string" />
+
+            <argument
+                android:name="fare"
+                app:argType="com.moove.tickets.presentation.fare.model.FareModel" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirmationFragment"
+        android:name="com.moove.tickets.presentation.confirmation.ConfirmationFragment"
+        android:label="@string/confirm_selection_title"
+        >
+
+        <argument
+            android:name="ryderId"
+            app:argType="string" />
+
+        <argument
+            android:name="fare"
+            app:argType="com.moove.tickets.presentation.fare.model.FareModel" />
     </fragment>
 
 </navigation>

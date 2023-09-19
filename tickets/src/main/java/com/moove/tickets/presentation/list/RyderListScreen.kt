@@ -11,7 +11,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.moove.design_system.compose.AppTheme
 import com.moove.design_system.compose.Scaffold
+import com.moove.shared.presentation.compose.component.ScreenContent
 import com.moove.shared.presentation.compose.component.ScreenContentStatus
+import com.moove.shared.presentation.compose.component.isLoading
 import com.moove.tickets.presentation.list.component.RyderList
 import com.moove.tickets.presentation.list.model.RyderModel
 import com.moove.tickets.presentation.list.model.fakeRyderModels
@@ -34,10 +36,15 @@ fun RyderListScreen(
             )
         },
         content = {
-            RyderList(
-                ryders = uiState.ryders,
-                onClick = onRyderClick
-            )
+            ScreenContent(
+                status = uiState.status,
+                forceLoading = uiState.status.isLoading,
+            ) {
+                RyderList(
+                    ryders = uiState.ryders,
+                    onClick = onRyderClick
+                )
+            }
         }
     )
 }

@@ -3,6 +3,7 @@ package com.moove.tickets.presentation.list
 import androidx.lifecycle.ViewModel
 import com.moove.core.exception.ExceptionHandler
 import com.moove.core.exception.asCoroutineExceptionHandler
+import com.moove.shared.presentation.compose.component.ScreenContentStatus
 import com.moove.shared.presentation.viewmodel.executeUseCase
 import com.moove.tickets.domain.use_cases.GetRydersUseCase
 import com.moove.tickets.presentation.list.model.RyderModel
@@ -34,8 +35,19 @@ class RyderListViewModel(
     }
 
     private fun fetchRyders() = intent {
+        reduce { state.copy(status = ScreenContentStatus.Loading) }
         executeUseCase { getRydersUseCase() }
-            .onSuccess { reduce { state.copy(ryders = it.asPresentation()) } }
-            .onFailure { postSideEffect(RyderListEffect.ShowGenericError) }
+            .onSuccess {
+                reduce {
+                    state.copy(
+                        status = ScreenContentStatus.Success,
+                        ryders = it.asPresentation()
+                    )
+                }
+            }
+            .onFailure {
+                reduce { state.copy(status = ScreenContentStatus.Failure) }
+                postSideEffect(RyderListEffect.ShowGenericError)
+            }
     }
 }

@@ -3,6 +3,7 @@ package com.moove.tickets.presentation.fare
 import androidx.lifecycle.ViewModel
 import com.moove.core.exception.ExceptionHandler
 import com.moove.core.exception.asCoroutineExceptionHandler
+import com.moove.shared.presentation.compose.component.ScreenContentStatus
 import com.moove.shared.presentation.viewmodel.executeUseCase
 import com.moove.tickets.domain.use_cases.GetFaresByIdUseCase
 import com.moove.tickets.presentation.fare.model.FareModel
@@ -35,8 +36,19 @@ class FareListViewModel(
     }
 
     private fun fetchFares() = intent {
+        reduce { state.copy(status = ScreenContentStatus.Loading) }
         executeUseCase { getFaresByIdUseCase(ryderId) }
-            .onSuccess { reduce { state.copy(fares = it.asPresentation()) } }
-            .onFailure { postSideEffect(FareListEffect.ShowGenericError) }
+            .onSuccess {
+                reduce {
+                    state.copy(
+                        status = ScreenContentStatus.Success,
+                        fares = it.asPresentation()
+                    )
+                }
+            }
+            .onFailure {
+                reduce { state.copy(status = ScreenContentStatus.Failure) }
+                postSideEffect(FareListEffect.ShowGenericError)
+            }
     }
 }
