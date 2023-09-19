@@ -5,6 +5,8 @@ import com.moove.tickets.data.local.TicketsLocalDataSource
 import com.moove.tickets.domain.TicketsRepository
 import com.moove.tickets.domain.use_cases.GetFaresByIdUseCase
 import com.moove.tickets.domain.use_cases.GetRydersUseCase
+import com.moove.tickets.presentation.fare.FareListNavigator
+import com.moove.tickets.presentation.fare.FareListViewModel
 import com.moove.tickets.presentation.list.RyderListNavigator
 import com.moove.tickets.presentation.list.RyderListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -27,6 +29,15 @@ val ticketsModule = module {
         RyderListViewModel(
             exceptionHandler = get(),
             getRydersUseCase = get(),
+        )
+    }
+
+    factory { FareListNavigator(get()) }
+    viewModel {
+        FareListViewModel(
+            exceptionHandler = get(),
+            ryderId = get(),
+            getFaresByIdUseCase = get(),
         )
     }
 }

@@ -11,17 +11,24 @@
         android:label="@string/select_ryder_title"
         >
 
-<!--        <action-->
-<!--            android:id="@+id/action_bookingsFragment_to_carRentalBookingDetailsFragment"-->
-<!--            app:destination="@id/car_rental_bookings_details_flow"-->
-<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
-<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
-<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
-<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim">-->
-<!--            <argument-->
-<!--                android:name="bookingId"-->
-<!--                app:argType="string" />-->
-<!--        </action>-->
+        <action
+            android:id="@+id/action_rydersFragment_to_fareListFragment"
+            app:destination="@id/fareListFragment">
+            <argument
+                android:name="ryderId"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fareListFragment"
+        android:name="com.moove.tickets.presentation.fare.FareListFragment"
+        android:label="@string/select_fare_title"
+        >
+
+        <argument
+            android:name="ryderId"
+            app:argType="string" />
     </fragment>
 
 </navigation>

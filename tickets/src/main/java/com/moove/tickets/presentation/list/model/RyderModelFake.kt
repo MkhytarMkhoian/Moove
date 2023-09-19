@@ -1,5 +1,7 @@
 package com.moove.tickets.presentation.list.model
 
+import com.moove.tickets.presentation.fare.model.fakeFareModels
+
 internal val fakeRyderModels: List<RyderModel>
     get() = listOf(
         RyderModel(

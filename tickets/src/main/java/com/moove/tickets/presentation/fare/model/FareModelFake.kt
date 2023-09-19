@@ -1,4 +1,4 @@
-package com.moove.tickets.presentation.list.model
+package com.moove.tickets.presentation.fare.model
 
 internal val fakeFareModels: List<FareModel>
     get() = listOf(

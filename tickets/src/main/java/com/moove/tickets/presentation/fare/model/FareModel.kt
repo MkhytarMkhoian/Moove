@@ -1,4 +1,4 @@
-package com.moove.tickets.presentation.list.model
+package com.moove.tickets.presentation.fare.model
 
 import android.os.Parcelable
 import com.moove.tickets.domain.model.Fare

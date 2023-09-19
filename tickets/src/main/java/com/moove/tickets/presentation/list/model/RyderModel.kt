@@ -2,6 +2,8 @@ package com.moove.tickets.presentation.list.model
 
 import android.os.Parcelable
 import com.moove.tickets.domain.model.Ryder
+import com.moove.tickets.presentation.fare.model.FareModel
+import com.moove.tickets.presentation.fare.model.asPresentation
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
