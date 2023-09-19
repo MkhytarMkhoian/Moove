@@ -1,0 +1,31 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+apply from: "${rootProject.projectDir}/gradle/base-android-config.gradle"
+
+android {
+    namespace 'com.moove.core'
+}
+
+dependencies {
+    // region kotlin
+    api libs.kotlin.coroutines.core
+    api libs.kotlin.coroutines.android
+    // endregion
+
+    // region ui
+    api libs.androidx.core
+    api libs.androidx.compose.ui.text
+    // endregion
+
+    // region io
+    api platform(libs.okhttp.platform)
+    api libs.okhttp.client
+    api libs.okhttp.logging
+    // endregion
+
+    // region Tests
+    testImplementation libs.bundles.tests.unit
+    // endregion
+}

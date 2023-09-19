@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="select_ryder_title">Select Ryder</string>
+    <string name="select_fare_title">Select Fare</string>
+    <string name="confirm_selection_title">Confirm Selection</string>
+    <string name="global_snackbar_genericerror_title">An error has occurred.</string>
+</resources>
