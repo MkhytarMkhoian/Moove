@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.moove.shared.R
 import com.moove.shared.databinding.ComposeFragmentBinding
 import com.moove.shared.presentation.compose.platform.setAppComposeContent
+import com.moove.shared.presentation.fragment.delegate.viewBinding
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 

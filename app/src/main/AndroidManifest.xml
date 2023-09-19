@@ -5,6 +5,7 @@
     >
 
     <application
+        android:name=".app.MooveApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,6 +15,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moove"
         tools:targetApi="31"
-        />
+        >
+
+        <activity
+            android:name=".app.main.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Moove"
+            android:windowSoftInputMode="adjustResize"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <nav-graph android:value="@navigation/app_main_navigation" />
+        </activity>
+    </application>
 
 </manifest>

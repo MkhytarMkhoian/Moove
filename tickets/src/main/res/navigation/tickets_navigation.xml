@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/tickets_flow"
+    app:startDestination="@id/rydersFragment">
+
+    <fragment
+        android:id="@+id/rydersFragment"
+        android:name="com.moove.tickets.presentation.list.RyderListFragment"
+        android:label="@string/select_ryder_title"
+        >
+
+<!--        <action-->
+<!--            android:id="@+id/action_bookingsFragment_to_carRentalBookingDetailsFragment"-->
+<!--            app:destination="@id/car_rental_bookings_details_flow"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim">-->
+<!--            <argument-->
+<!--                android:name="bookingId"-->
+<!--                app:argType="string" />-->
+<!--        </action>-->
+    </fragment>
+
+</navigation>
