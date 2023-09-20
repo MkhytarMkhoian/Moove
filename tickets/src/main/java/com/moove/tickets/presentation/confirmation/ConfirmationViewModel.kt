@@ -70,7 +70,7 @@ class ConfirmationViewModel(
                 postSideEffect(ConfirmationEffect.ShowSuccessMessage)
             }
             .onFailure {
-                reduce { state.copy(status = ScreenContentStatus.Success) }
+                reduce { state.copy(status = ScreenContentStatus.Failure) }
                 postSideEffect(ConfirmationEffect.ShowGenericError)
             }
     }

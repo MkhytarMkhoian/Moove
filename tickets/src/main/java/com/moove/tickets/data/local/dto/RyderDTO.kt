@@ -12,6 +12,7 @@ data class RyderDTO(
     val subtext: String?,
 )
 
+// TODO add extra tests
 fun RyderDTO.asDomain(id: String) = Ryder(
     id = id,
     fares = fares.asDomain(),

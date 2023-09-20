@@ -65,6 +65,8 @@ dependencies {
     // endregion
 
     // region Tests
+    api libs.javafaker
+
     testImplementation libs.bundles.tests.unit
     testImplementation libs.bundles.tests.viewmodel
     testImplementation libs.bundles.kointest

@@ -30,8 +30,8 @@ class RyderListViewModel(
         fetchRyders()
     }
 
-    fun onRyderClick(ruder: RyderModel) = intent {
-        postSideEffect(RyderListEffect.GoToFares(ruder.id))
+    fun onRyderClick(ryder: RyderModel) = intent {
+        postSideEffect(RyderListEffect.GoToFares(ryder.id))
     }
 
     private fun fetchRyders() = intent {
