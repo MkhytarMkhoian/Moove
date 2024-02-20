@@ -43,8 +43,8 @@ jobs:
       - name: Job set up
         uses: ./.github/actions/job-set-up
 
-      - run: ./gradlew :Moove:assemble
-      - run: ./gradlew clean testDebug -p Moove/
+      - run: ./gradlew assembleDebug
+      - run: ./gradlew clean testDebugUnitTest
 
   Documentation:
     needs: SetUp
