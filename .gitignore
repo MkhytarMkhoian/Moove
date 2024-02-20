@@ -10,3 +10,4 @@ local.properties
 /android-docs/venv/
 /.idea/
 /android-docs/docs/api/
+/android-docs/html/
