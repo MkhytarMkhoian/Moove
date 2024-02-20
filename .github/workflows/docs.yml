@@ -1,0 +1,47 @@
+name: Docs
+
+on:
+  workflow_call:
+    inputs:
+      shouldRunAndroidDocumentation:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  Android:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.shouldRunAndroidDocumentation == 'true'}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Job set up
+        uses: ./.github/actions/job-set-up
+
+      - uses: actions/setup-python@v5
+
+      - name: Generate Docs
+        run: ./.github/workflows/generate_docs.sh
+
+      - name: Upload documentation zip archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: moove-documentation
+          path: docs/html
+
+      - name: Build Docker image
+        run: docker build . --file android-docs/Dockerfile --tag moove-docs:lattest
+
+      - name: Tag image
+        run: docker tag moove-docs:lattest ghcr.io/MkhytarMkhoian/moove/docs:latest
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Push image
+        run: docker push ghcr.io/MkhytarMkhoian/moove/docs:latest
