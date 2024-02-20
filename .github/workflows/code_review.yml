@@ -43,8 +43,11 @@ jobs:
       - name: Job set up
         uses: ./.github/actions/job-set-up
 
-      - run: ./gradlew assembleDebug
-      - run: ./gradlew clean testDebugUnitTest
+      - name: Build
+        run: ./gradlew assembleDebug
+
+      - name: Run unit tests
+        run: ./gradlew clean testDebugUnitTest
 
   Documentation:
     needs: SetUp
