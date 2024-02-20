@@ -25,10 +25,10 @@ plugins {
 
 subprojects {
     apply plugin: 'org.jetbrains.dokka'
+}
 
-    // configure only the HTML task
-    dokkaHtmlMultiModule {
-        moduleName.set("Moove Documentation")
-        outputDirectory.set(file("build/docs/api"))
-    }
+// configure only the HTML task
+dokkaHtmlMultiModule {
+    moduleName.set("Moove Documentation")
+    outputDirectory.set(file("docs/api"))
 }
