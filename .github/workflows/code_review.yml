@@ -2,19 +2,17 @@ name: Code review
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/develop' }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - main
-      - develop
+      - master
   pull_request:
     types: [opened, ready_for_review, synchronize, labeled]
     branches:
-      - main
-      - develop
+      - master
 
 jobs:
   SetUp:
@@ -23,7 +21,7 @@ jobs:
       - id: setVariables
         name: Set variables
         run: |
-          isFromDevelop=${{ github.ref == 'refs/heads/develop' }}
+          isFromMaster=${{ github.ref == 'refs/heads/master' }}
           isManual=${{ github.event_name == 'workflow_dispatch' }}
           echo "shouldRunAndroidDocumentation=${{ contains(github.event.pull_request.labels.*.name, 'documentation') }}" >> "$GITHUB_OUTPUT"
           
