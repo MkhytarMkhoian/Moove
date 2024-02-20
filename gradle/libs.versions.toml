@@ -1,53 +1,53 @@
 [versions]
 # kotlin
-kotlin = "1.8.20"
-ksp = "1.8.20-1.0.11"
-coroutines = "1.7.2"
+kotlin = "1.9.22"
+ksp = "1.9.22-1.0.17"
+coroutines = "1.8.0"
 # androidx
-lifecycle = "2.5.1"
-navigation = "2.5.3"
+lifecycle = "2.7.0"
+navigation = "2.7.7"
 # di
-koin = "3.3.2"
-koin_android = "3.3.2"
-koin_compose = "3.4.1"
+koin = "3.5.3"
+koin_android = "3.5.3"
+koin_compose = "3.5.3"
 # presentation
-orbit = "5.0.0"
+orbit = "6.1.0"
 # ui
-compose = "1.4.3"
-composeCompiler = "1.4.6"
-composeFoundation = "1.4.3"
-composeMaterial = "1.4.3"
-accompanist = "0.30.1"
-paging = "3.2.0"
+compose = "1.6.1"
+composeCompiler = "1.5.9"
+composeFoundation = "1.6.1"
+composeMaterial = "1.6.1"
+accompanist = "0.34.0"
+paging = "3.2.1"
 # io
 retrofit = "2.9.0"
-moshi = "1.15.0"
-moshi_sealed = "0.21.0"
-room = "2.5.2"
+moshi = "1.15.1"
+moshi_sealed = "0.25.1"
+room = "2.6.1"
 # services
-firebase = "32.1.1"
+firebase = "32.7.2"
 # checks
-lint = "30.1.2"
-core-ktx = "1.9.0"
+lint = "31.2.2"
+core-ktx = "1.12.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
-material = "1.9.0"
+material = "1.11.0"
 
 [libraries]
 # core
-androidx-core = "androidx.core:core-ktx:1.10.1"
+androidx-core = "androidx.core:core-ktx:1.12.0"
 androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
-androidx-fragment = "androidx.fragment:fragment-ktx:1.5.7"
+androidx-fragment = "androidx.fragment:fragment-ktx:1.6.2"
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 androidx-lifecycle-common = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "lifecycle" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
-androidx-browser = "androidx.browser:browser:1.4.0"
-android-tools-desugar = "com.android.tools:desugar_jdk_libs:2.0.2"
+androidx-browser = "androidx.browser:browser:1.7.0"
+android-tools-desugar = "com.android.tools:desugar_jdk_libs:2.0.4"
 # kotlin
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
@@ -66,7 +66,7 @@ orbit-viewmodel = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orb
 orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit" }
 orbit-test = { module = "org.orbit-mvi:orbit-test", version.ref = "orbit" }
 # ui
-google-material = "com.google.android.material:material:1.8.0"
+google-material = "com.google.android.material:material:1.11.0"
 androidx-splashscreen = "androidx.core:core-splashscreen:1.0.1"
 androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
 androidx-swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
@@ -76,12 +76,12 @@ androidx-compose-ui-text = { module = "androidx.compose.ui:ui-text", version.ref
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "composeFoundation" }
 androidx-compose-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "compose" }
-androidx-compose-material3 = "androidx.compose.material3:material3:1.1.1"
+androidx-compose-material3 = "androidx.compose.material3:material3:1.2.0"
 androidx-compose-material-core = { module = "androidx.compose.material:material", version.ref = "composeMaterial" }
 androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "composeMaterial" }
 androidx-compose-material-icons-ext = { module = "androidx.compose.material:material-icons-extended", version.ref = "composeMaterial" }
 androidx-compose-animation-graphics = { module = "androidx.compose.animation:animation-graphics", version.ref = "compose" }
-androidx-compose-activity = "androidx.activity:activity-compose:1.6.1"
+androidx-compose-activity = "androidx.activity:activity-compose:1.8.2"
 androidx-compose-constraintlayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 google-accompanist-systemui = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 google-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
@@ -89,16 +89,16 @@ google-accompanist-pager = { module = "com.google.accompanist:accompanist-pager"
 google-accompanist-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
 google-accompanist-webview = { module = "com.google.accompanist:accompanist-webview", version.ref = "accompanist" }
 google-accompanist-placeholder-material = { module = "com.google.accompanist:accompanist-placeholder-material", version.ref = "accompanist" }
-coil = "io.coil-kt:coil-compose:2.2.2"
+coil = "io.coil-kt:coil-compose:2.5.0"
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
-paging-compose = "androidx.paging:paging-compose:3.2.0"
-lottie-compose = "com.airbnb.android:lottie-compose:5.2.0"
-maps-compose = "com.google.maps.android:maps-compose:2.9.1"
+paging-compose = "androidx.paging:paging-compose:3.2.1"
+lottie-compose = "com.airbnb.android:lottie-compose:6.1.0"
+maps-compose = "com.google.maps.android:maps-compose:4.2.0"
 maps-utils = "com.google.maps.android:android-maps-utils:3.4.0"
 # network
 retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
-okhttp-platform = "com.squareup.okhttp3:okhttp-bom:4.10.0"
+okhttp-platform = "com.squareup.okhttp3:okhttp-bom:4.12.0"
 okhttp-client = { module = "com.squareup.okhttp3:okhttp" }
 okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
@@ -111,7 +111,7 @@ moshi-compiler = "dev.zacsweers.moshix:moshi-ksp:0.14.1"
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 # security
-androidx-security-crypto = "androidx.security:security-crypto:1.1.0-alpha03"
+androidx-security-crypto = "androidx.security:security-crypto:1.1.0-alpha06"
 google-tink = "com.google.crypto.tink:tink-android:1.7.0"
 # services
 firebase-platform = { module = "com.google.firebase:firebase-bom", version.ref = "firebase" }
@@ -123,10 +123,10 @@ firebase-perf = { module = "com.google.firebase:firebase-perf-ktx" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging-ktx" }
 firebase-inappmessaging = { module = "com.google.firebase:firebase-inappmessaging-display-ktx" }
 firebase-installations = { module = "com.google.firebase:firebase-installations" }
-playservices-base = "com.google.android.gms:play-services-base:18.1.0"
-playservices-tasks = "com.google.android.gms:play-services-tasks:18.0.2"
-playservices-location = "com.google.android.gms:play-services-location:21.0.1"
-playservices-maps = "com.google.android.gms:play-services-maps:18.1.0"
+playservices-base = "com.google.android.gms:play-services-base:18.3.0"
+playservices-tasks = "com.google.android.gms:play-services-tasks:18.1.0"
+playservices-location = "com.google.android.gms:play-services-location:21.1.0"
+playservices-maps = "com.google.android.gms:play-services-maps:18.2.0"
 playservices-review = "com.google.android.play:review-ktx:2.0.1"
 playservices-ads-identifier = "com.google.android.gms:play-services-ads-identifier:18.0.1"
 install-referrer = "com.android.installreferrer:installreferrer:2.2"
@@ -143,8 +143,8 @@ androidx-test-junit = "androidx.test.ext:junit:1.1.5"
 androidx-test-espresso = "androidx.test.espresso:espresso-core:3.5.1"
 # test utils
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-turbine = "app.cash.turbine:turbine:0.12.1"
-mockk = "io.mockk:mockk:1.13.4"
+turbine = "app.cash.turbine:turbine:0.13.0"
+mockk = "io.mockk:mockk:1.13.9"
 javafaker = "com.github.javafaker:javafaker:1.0.2"
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit-junit = { group = "junit", name = "junit", version.ref = "junit" }

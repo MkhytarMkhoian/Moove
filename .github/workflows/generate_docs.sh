@@ -9,8 +9,8 @@
 set -ex
 
 # Generate the API docs
-./gradlew dokkaHtml
-mv ./build/dokka/api docs/docs
+./gradlew dokkaHtmlMultiModule
+mv ./build/dokka/api docs
 
 # Build the site locally
 cd ./docs

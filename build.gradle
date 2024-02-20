@@ -1,9 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.androidSetup = [
-            'compileSdkVersion': 33,
+            'compileSdkVersion': 34,
             'minSdkVersion'    : 23,
-            'targetSdkVersion': 33
+            'targetSdkVersion' : 34
     ]
 
     repositories {
@@ -25,4 +25,10 @@ plugins {
 
 subprojects {
     apply plugin: 'org.jetbrains.dokka'
+
+    // configure only the HTML task
+    dokkaHtmlMultiModule {
+        moduleName.set("Moove Documentation")
+        outputDirectory.set(file("build/docs/api"))
+    }
 }

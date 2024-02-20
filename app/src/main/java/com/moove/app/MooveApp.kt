@@ -6,7 +6,6 @@ import com.moove.app.di.exceptionsModule
 import com.moove.app.di.mainModule
 import com.moove.app.di.netModule
 import com.moove.app.di.ticketsModule
-import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -22,7 +21,7 @@ open class MooveApp : Application() {
     private fun setupDependencyInjection() {
         startKoin {
             androidContext(this@MooveApp)
-            androidLogger(if (BuildConfig.DEBUG) Level.INFO else Level.NONE)
+//            androidLogger(if (BuildConfig.DEBUG) Level.INFO else Level.NONE)
             modules(
                 mainModule,
                 coroutineModule,
