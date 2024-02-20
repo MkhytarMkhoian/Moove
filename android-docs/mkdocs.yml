@@ -1,0 +1,69 @@
+site_name: Moove
+site_description: "Moove - Documentation"
+site_author: Mkhytar Mkhoian.
+site_dir: html
+
+nav:
+  - 'Getting Started': index.md
+  - 'API': api/index.html
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      primary: custom
+      accent: 'dark-blue'
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      primary: custom
+      accent: 'dark-blue'
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search:
+      lang: en
+  - offline:
+      enabled: true
+
+markdown_extensions:
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      use_pygments: true
+      anchor_linenums: true
+      pygments_lang_class: true
+      auto_title: true
+  - pymdownx.superfences
+  - codehilite:
+      guess_lang: false
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.critic
+  - pymdownx.critic
+  - admonition
+  - pymdownx.details
+  - toc:
+      permalink: true
+  - md_in_html
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg

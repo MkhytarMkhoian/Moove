@@ -10,10 +10,10 @@ set -ex
 
 # Generate the API docs
 ./gradlew dokkaHtmlMultiModule
-mv ./build/dokka/api docs
+#mv ./build/dokka/api android-docs/docs
 
 # Build the site locally
-cd ./docs
+cd ./android-docs
 python3 -m venv venv
 source venv/bin/activate
 pip3 install mkdocs-material

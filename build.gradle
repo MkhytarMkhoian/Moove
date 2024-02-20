@@ -30,5 +30,5 @@ subprojects {
 // configure only the HTML task
 dokkaHtmlMultiModule {
     moduleName.set("Moove Documentation")
-    outputDirectory.set(file("docs/api"))
+    outputDirectory.set(file("android-docs/docs/api"))
 }

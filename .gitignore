@@ -7,4 +7,6 @@
 .externalNativeBuild
 .cxx
 local.properties
-/.idea
+/android-docs/venv/
+/.idea/
+/android-docs/docs/api/

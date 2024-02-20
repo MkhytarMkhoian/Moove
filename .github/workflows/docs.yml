@@ -35,13 +35,13 @@ jobs:
           path: docs/html
 
       - name: Build Docker image
-        run: docker build . --file android-docs/Dockerfile --tag moove-docs:lattest
+        run: docker build . --file android-docs/Dockerfile --tag moove-android-docs:lattest
 
       - name: Tag image
-        run: docker tag moove-docs:lattest ghcr.io/MkhytarMkhoian/moove/docs:latest
+        run: docker tag moove-android-docs:lattest ghcr.io/MkhytarMkhoian/moove/android-docs:latest
 
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
 
       - name: Push image
-        run: docker push ghcr.io/MkhytarMkhoian/moove/docs:latest
+        run: docker push ghcr.io/MkhytarMkhoian/moove/android-docs:latest
