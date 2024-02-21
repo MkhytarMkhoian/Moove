@@ -45,10 +45,6 @@ jobs:
       - name: Run unit tests
         run: ./gradlew clean testDebugUnitTest
 
-  Documentation:
-    needs: SetUp
-    uses: ./.github/workflows/docs.yml
-
   AllowMerge:
     if: always()
     runs-on: ubuntu-latest
