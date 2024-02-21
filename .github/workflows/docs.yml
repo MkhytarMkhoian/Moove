@@ -9,10 +9,21 @@ on:
 
 permissions:
   contents: read
-  packages: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  Android:
+  Deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     if: ${{ inputs.shouldRunAndroidDocumentation == 'true'}}
 
@@ -31,17 +42,27 @@ jobs:
       - name: Upload documentation zip archive
         uses: actions/upload-artifact@v4
         with:
-          name: moove-documentation
+          name: github-pages
           path: android-docs/html
 
-      - name: Build Docker image
-        run: docker build . --file android-docs/Dockerfile --tag moove-android-docs:lattest
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './android-docs/html'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
-      - name: Tag image
-        run: docker tag moove-android-docs:lattest ghcr.io/mkhytarmkhoian/moove/android-docs:latest
-
-      - name: Log in to registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-
-      - name: Push image
-        run: docker push ghcr.io/mkhytarmkhoian/moove/android-docs:latest
+#      - name: Build Docker image
+#        run: docker build . --file android-docs/Dockerfile --tag moove-android-docs:lattest
+#
+#      - name: Tag image
+#        run: docker tag moove-android-docs:lattest ghcr.io/mkhytarmkhoian/moove/android-docs:latest
+#
+#      - name: Log in to registry
+#        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+#
+#      - name: Push image
+#        run: docker push ghcr.io/mkhytarmkhoian/moove/android-docs:latest
