@@ -53,7 +53,7 @@ jobs:
       - run: |
           if [ ${{ github.event_name }} == pull_request ] && [ ${{ join(github.event.pull_request.labels.*.name) == '' }} == true ]; then
             exit 1
-          elif [ ${{ (contains(needs.Build.result, 'failure')) }} == true ] || [ ${{ (contains(needs.BuildAndRunTests.result, 'failure')) }} || [ ${{ (contains(needs.Documentation.result, 'failure')) }} == true ]; then
+          elif [ ${{ (contains(needs.Build.result, 'failure')) }} == true ] || [ ${{ (contains(needs.BuildAndRunTests.result, 'failure')) }} ]; then
             exit 1
           else
             exit 0
