@@ -34,7 +34,7 @@ jobs:
       - name: Upload documentation zip archive
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          name: moove-android-docs
           path: android-docs/html
 
       - name: Setup Pages
