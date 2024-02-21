@@ -51,14 +51,14 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-#      - name: Build Docker image
-#        run: docker build . --file android-docs/Dockerfile --tag moove-android-docs:lattest
-#
-#      - name: Tag image
-#        run: docker tag moove-android-docs:lattest ghcr.io/mkhytarmkhoian/moove/android-docs:latest
-#
-#      - name: Log in to registry
-#        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-#
-#      - name: Push image
-#        run: docker push ghcr.io/mkhytarmkhoian/moove/android-docs:latest
+      - name: Build Docker image
+        run: docker build . --file android-docs/Dockerfile --tag moove-android-docs:lattest
+
+      - name: Tag image
+        run: docker tag moove-android-docs:lattest ghcr.io/mkhytarmkhoian/moove/android-docs:latest
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Push image
+        run: docker push ghcr.io/mkhytarmkhoian/moove/android-docs:latest
