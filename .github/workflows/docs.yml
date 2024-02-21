@@ -18,7 +18,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
-    if: ${{ inputs.shouldRunAndroidDocumentation == 'true'}}
 
     steps:
       - name: Checkout
