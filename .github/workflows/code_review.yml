@@ -6,9 +6,6 @@ concurrency:
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
   pull_request:
     types: [opened, ready_for_review, synchronize, labeled]
     branches:
