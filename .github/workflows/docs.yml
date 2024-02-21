@@ -2,10 +2,6 @@ name: Docs
 
 on:
   workflow_call:
-    inputs:
-      shouldRunAndroidDocumentation:
-        required: true
-        type: string
 
 permissions:
   contents: read

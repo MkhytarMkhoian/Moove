@@ -23,15 +23,12 @@ jobs:
         run: |
           isFromMaster=${{ github.ref == 'refs/heads/master' }}
           isManual=${{ github.event_name == 'workflow_dispatch' }}
-          echo "shouldRunAndroidDocumentation=${{ contains(github.event.pull_request.labels.*.name, 'documentation') }}" >> "$GITHUB_OUTPUT"
           
           if [ ${{ github.event_name }} == workflow_dispatch ] || [ ${{ github.event_name }} == push ] || ([ ${{ github.event_name }} == pull_request ] && [ ${{ github.event.pull_request.draft }} == false ]); then
             exit 0
           else
             exit 1
           fi
-    outputs:
-      shouldRunAndroidDocumentation: ${{ steps.setVariables.outputs.shouldRunAndroidDocumentation }}
 
   BuildAndRunTests:
     needs: SetUp
@@ -51,8 +48,6 @@ jobs:
   Documentation:
     needs: SetUp
     uses: ./.github/workflows/docs.yml
-    with:
-      shouldRunAndroidDocumentation: ${{ needs.SetUp.outputs.shouldRunAndroidDocumentation }}
 
   AllowMerge:
     if: always()
