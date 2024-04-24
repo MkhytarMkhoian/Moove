@@ -1,6 +1,7 @@
 [versions]
 # kotlin
-kotlin = "1.9.22"
+gradle = "8.3.2"
+kotlin = "1.9.23"
 ksp = "1.9.22-1.0.17"
 coroutines = "1.8.0"
 # androidx
@@ -13,10 +14,10 @@ koin_compose = "3.5.3"
 # presentation
 orbit = "6.1.0"
 # ui
-compose = "1.6.1"
-composeCompiler = "1.5.9"
-composeFoundation = "1.6.1"
-composeMaterial = "1.6.1"
+compose = "1.6.6"
+composeCompiler = "1.5.11"
+composeFoundation = "1.6.6"
+composeMaterial = "1.6.6"
 accompanist = "0.34.0"
 paging = "3.2.1"
 # io
@@ -25,9 +26,9 @@ moshi = "1.15.1"
 moshi_sealed = "0.25.1"
 room = "2.6.1"
 # services
-firebase = "32.7.2"
+firebase = "32.8.1"
 # checks
-lint = "31.2.2"
+lint = "31.3.2"
 core-ktx = "1.12.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
@@ -46,9 +47,10 @@ androidx-lifecycle-common = { module = "androidx.lifecycle:lifecycle-common-java
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
-androidx-browser = "androidx.browser:browser:1.7.0"
+androidx-browser = "androidx.browser:browser:1.8.0"
 android-tools-desugar = "com.android.tools:desugar_jdk_libs:2.0.4"
 # kotlin
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -76,7 +78,7 @@ androidx-compose-ui-text = { module = "androidx.compose.ui:ui-text", version.ref
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "composeFoundation" }
 androidx-compose-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "compose" }
-androidx-compose-material3 = "androidx.compose.material3:material3:1.2.0"
+androidx-compose-material3 = "androidx.compose.material3:material3:1.2.1"
 androidx-compose-material-core = { module = "androidx.compose.material:material", version.ref = "composeMaterial" }
 androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "composeMaterial" }
 androidx-compose-material-icons-ext = { module = "androidx.compose.material:material-icons-extended", version.ref = "composeMaterial" }
@@ -89,7 +91,7 @@ google-accompanist-pager = { module = "com.google.accompanist:accompanist-pager"
 google-accompanist-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
 google-accompanist-webview = { module = "com.google.accompanist:accompanist-webview", version.ref = "accompanist" }
 google-accompanist-placeholder-material = { module = "com.google.accompanist:accompanist-placeholder-material", version.ref = "accompanist" }
-coil = "io.coil-kt:coil-compose:2.5.0"
+coil = "io.coil-kt:coil-compose:2.6.0"
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 paging-compose = "androidx.paging:paging-compose:3.2.1"
 lottie-compose = "com.airbnb.android:lottie-compose:6.1.0"
@@ -143,7 +145,7 @@ androidx-test-junit = "androidx.test.ext:junit:1.1.5"
 androidx-test-espresso = "androidx.test.espresso:espresso-core:3.5.1"
 # test utils
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-turbine = "app.cash.turbine:turbine:0.13.0"
+turbine = "app.cash.turbine:turbine:1.0.0"
 mockk = "io.mockk:mockk:1.13.9"
 javafaker = "com.github.javafaker:javafaker:1.0.2"
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
