@@ -1,46 +1,46 @@
 [versions]
 # kotlin
-gradle = "8.3.2"
+gradle = "8.4.1"
 kotlin = "1.9.23"
 ksp = "1.9.22-1.0.17"
-coroutines = "1.8.0"
+coroutines = "1.8.1"
 # androidx
-lifecycle = "2.7.0"
+lifecycle = "2.8.0"
 navigation = "2.7.7"
 # di
 koin = "3.5.3"
 koin_android = "3.5.3"
 koin_compose = "3.5.3"
 # presentation
-orbit = "6.1.0"
+orbit = "7.1.0"
 # ui
-compose = "1.6.6"
+compose = "1.6.7"
 composeCompiler = "1.5.11"
-composeFoundation = "1.6.6"
-composeMaterial = "1.6.6"
+composeFoundation = "1.6.7"
+composeMaterial = "1.6.7"
 accompanist = "0.34.0"
-paging = "3.2.1"
+paging = "3.3.0"
 # io
 retrofit = "2.9.0"
 moshi = "1.15.1"
 moshi_sealed = "0.25.1"
 room = "2.6.1"
 # services
-firebase = "32.8.1"
+firebase = "33.0.0"
 # checks
-lint = "31.3.2"
-core-ktx = "1.12.0"
+lint = "31.4.1"
+core-ktx = "1.13.1"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
-material = "1.11.0"
+material = "1.12.0"
 
 [libraries]
 # core
-androidx-core = "androidx.core:core-ktx:1.12.0"
+androidx-core = "androidx.core:core-ktx:1.13.1"
 androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
-androidx-fragment = "androidx.fragment:fragment-ktx:1.6.2"
+androidx-fragment = "androidx.fragment:fragment-ktx:1.7.1"
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 androidx-lifecycle-common = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "lifecycle" }
@@ -68,11 +68,11 @@ orbit-viewmodel = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orb
 orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit" }
 orbit-test = { module = "org.orbit-mvi:orbit-test", version.ref = "orbit" }
 # ui
-google-material = "com.google.android.material:material:1.11.0"
+google-material = "com.google.android.material:material:1.12.0"
 androidx-splashscreen = "androidx.core:core-splashscreen:1.0.1"
 androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
 androidx-swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-androidx-viewpager = "androidx.viewpager2:viewpager2:1.0.0"
+androidx-viewpager = "androidx.viewpager2:viewpager2:1.1.0"
 androidx-compose-ui-core = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 androidx-compose-ui-text = { module = "androidx.compose.ui:ui-text", version.ref = "compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
@@ -83,7 +83,7 @@ androidx-compose-material-core = { module = "androidx.compose.material:material"
 androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "composeMaterial" }
 androidx-compose-material-icons-ext = { module = "androidx.compose.material:material-icons-extended", version.ref = "composeMaterial" }
 androidx-compose-animation-graphics = { module = "androidx.compose.animation:animation-graphics", version.ref = "compose" }
-androidx-compose-activity = "androidx.activity:activity-compose:1.8.2"
+androidx-compose-activity = "androidx.activity:activity-compose:1.9.0"
 androidx-compose-constraintlayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 google-accompanist-systemui = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 google-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
@@ -93,7 +93,7 @@ google-accompanist-webview = { module = "com.google.accompanist:accompanist-webv
 google-accompanist-placeholder-material = { module = "com.google.accompanist:accompanist-placeholder-material", version.ref = "accompanist" }
 coil = "io.coil-kt:coil-compose:2.6.0"
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
-paging-compose = "androidx.paging:paging-compose:3.2.1"
+paging-compose = "androidx.paging:paging-compose:3.3.0"
 lottie-compose = "com.airbnb.android:lottie-compose:6.1.0"
 maps-compose = "com.google.maps.android:maps-compose:4.2.0"
 maps-utils = "com.google.maps.android:android-maps-utils:3.4.0"
