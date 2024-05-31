@@ -10,6 +10,13 @@ apply from: "${rootProject.projectDir}/gradle/compose-android-config.gradle"
 
 android {
     namespace 'com.moove'
+
+    defaultConfig {
+        buildConfigField "String", "FIREBASE_DYNAMIC_LINK_HOST", "\"$firebase_dynamic_link_host\""
+        manifestPlaceholders = [
+                firebaseDynamicLinkHost: "\"$firebase_dynamic_link_host\""
+        ]
+    }
 }
 
 dependencies {
@@ -26,6 +33,7 @@ dependencies {
     implementation libs.androidx.fragment
     implementation libs.bundles.androidx.navigation
     implementation libs.bundles.androidx.lifecycle
+    implementation libs.bundles.androidx.compose
     // endregion
 
     // region Kotlin

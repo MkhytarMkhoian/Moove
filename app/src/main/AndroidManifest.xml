@@ -30,6 +30,52 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Supported schemes -->
+                <data android:scheme="moove" />
+
+                <!-- Corporate subdomains -->
+                <data android:host="app" />
+
+            </intent-filter>
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Supported schemes -->
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+
+                <!-- Corporate subdomains -->
+                <data android:host="moove.com" />
+
+                <data android:pathPattern="/ticket/confirmation" />
+                <data android:pathPattern="/home" />
+            </intent-filter>
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Supported schemes -->
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+
+                <!-- Corporate subdomains -->
+                <data android:host="${firebaseDynamicLinkHost}" />
+
+            </intent-filter>
+
             <nav-graph android:value="@navigation/app_main_navigation" />
         </activity>
     </application>
