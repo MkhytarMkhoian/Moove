@@ -6,6 +6,10 @@ buildscript {
             'targetSdkVersion' : 34
     ]
 
+    ext {
+        firebase_dynamic_link_host = 'moove.page.link'
+    }
+
     repositories {
         google()
         mavenCentral()

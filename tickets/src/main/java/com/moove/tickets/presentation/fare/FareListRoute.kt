@@ -9,13 +9,14 @@ import com.moove.shared.presentation.compose.component.showGenericError
 import com.moove.shared.presentation.viewmodel.composableEffect
 import com.moove.shared.presentation.viewmodel.composableState
 import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
 @Composable
 fun FareListRoute(
     navigator: FareListNavigator,
     ryderId: String,
-    viewModel: FareListViewModel = getViewModel { parametersOf(ryderId) },
+    viewModel: FareListViewModel = koinViewModel { parametersOf(ryderId) },
     scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
     val state by viewModel.composableState()

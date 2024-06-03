@@ -1,4 +1,4 @@
-package com.moove.app.di
+package com.moove.tickets.di
 
 import com.moove.tickets.data.TicketsDataRepository
 import com.moove.tickets.data.local.TicketsLocalDataSource
@@ -28,7 +28,7 @@ val ticketsModule = module {
     single<TicketsRepository> { TicketsDataRepository(get()) }
     // endregion
 
-    factory { RyderListNavigator(get()) }
+    factory { RyderListNavigator(get(), get()) }
     viewModel {
         RyderListViewModel(
             exceptionHandler = get(),
@@ -36,7 +36,7 @@ val ticketsModule = module {
         )
     }
 
-    factory { FareListNavigator(get()) }
+    factory { FareListNavigator(get(), get()) }
     viewModel {
         FareListViewModel(
             exceptionHandler = get(),

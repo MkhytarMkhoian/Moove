@@ -3,7 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/tickets_flow">
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.moove.app.feature.home.HomeFragment"
+        android:label="Home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_tickets_flow"
+            app:destination="@id/tickets_flow" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_go_home"
+        app:destination="@id/homeFragment" />
 
     <include app:graph="@navigation/tickets_navigation" />
 

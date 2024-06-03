@@ -1,16 +1,18 @@
 package com.moove.tickets.presentation.list
 
-import androidx.navigation.NavController
 import com.moove.shared.navigation.ScreenNavigator
-import com.moove.shared.navigation.navigateSafely
+import com.moove.shared.navigation.TicketsNavigator
 
 class RyderListNavigator(
-    private val navController: NavController
-) : ScreenNavigator(navController) {
+    private val ticketsNavigator: TicketsNavigator,
+    private val screenNavigator: ScreenNavigator,
+) : ScreenNavigator {
 
     fun goFares(id: String) {
-        navController.navigateSafely(
-            RyderListFragmentDirections.actionRydersFragmentToFareListFragment(ryderId = id)
-        )
+        ticketsNavigator.goFares(id)
+    }
+
+    override fun goBack() {
+        screenNavigator.goBack()
     }
 }

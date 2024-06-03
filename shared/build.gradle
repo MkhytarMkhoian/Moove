@@ -64,6 +64,9 @@ dependencies {
     ksp libs.moshi.compiler
     // endregion
 
+    api platform(libs.firebase.platform)
+    api libs.firebase.dynamic.links
+
     // region Tests
     api libs.javafaker
 

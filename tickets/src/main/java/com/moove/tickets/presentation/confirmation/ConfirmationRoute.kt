@@ -12,6 +12,7 @@ import com.moove.shared.presentation.viewmodel.composableEffect
 import com.moove.shared.presentation.viewmodel.composableState
 import com.moove.tickets.presentation.fare.model.FareModel
 import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
 @Composable
@@ -19,7 +20,7 @@ fun FareListRoute(
     navigator: ConfirmationNavigator,
     ryderId: String,
     fare: FareModel,
-    viewModel: ConfirmationViewModel = getViewModel { parametersOf(ryderId, fare) },
+    viewModel: ConfirmationViewModel = koinViewModel { parametersOf(ryderId, fare) },
     scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
     val state by viewModel.composableState()
