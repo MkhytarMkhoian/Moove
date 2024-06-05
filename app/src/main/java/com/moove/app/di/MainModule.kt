@@ -16,9 +16,7 @@ import org.koin.dsl.module
 val mainModule = module {
 
     factory {
-        AppNavigator(
-            navController = get(),
-        )
+        AppNavigator(navController = get())
     } binds arrayOf(
         ScreenNavigator::class,
         GlobalAppNavigator::class,

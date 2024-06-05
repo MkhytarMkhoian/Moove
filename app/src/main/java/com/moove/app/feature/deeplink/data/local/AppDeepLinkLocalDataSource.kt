@@ -64,8 +64,8 @@ class AppDeepLinkLocalDataSource(
 
     private fun String.isThat(type: String): Boolean {
         /**
-         * Handle two cases
-         * app/profile/ and app/profile
+         * Handle two cases with slash symbol at the end and without it
+         * app/home/ and app/home
          */
         return contains(type, ignoreCase = true)
     }

@@ -11,15 +11,14 @@ import kotlinx.coroutines.withContext
 
 class FirebaseDynamicLinkDataSource(
     private val host: String,
-//    private val firebaseDynamicLinks: FirebaseDynamicLinks,
+    private val firebaseDynamicLinks: FirebaseDynamicLinks,
     private val backgroundDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
 
     suspend fun parseLink(uri: String): String? = withContext(backgroundDispatcher) {
         if (uri.matchesPattern(host).not()) return@withContext null
         try {
-//            firebaseDynamicLinks.getDynamicLink(Uri.parse(uri)).await().link?.toString()
-            "https://moove.page.link/45hj45j"
+            firebaseDynamicLinks.getDynamicLink(Uri.parse(uri)).await().link?.toString()
         } catch (e: Exception) {
             throw DynamicLinkParseException(cause = e)
         }
