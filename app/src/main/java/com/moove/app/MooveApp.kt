@@ -7,11 +7,13 @@ import com.moove.app.di.exceptionsModule
 import com.moove.app.di.mainModule
 import com.moove.app.di.netModule
 import com.moove.tickets.di.ticketsModule
+import dagger.hilt.android.HiltAndroidApp
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
+@HiltAndroidApp
 open class MooveApp : Application() {
 
     override fun onCreate() {

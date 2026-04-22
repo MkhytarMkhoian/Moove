@@ -23,4 +23,8 @@ class HomeViewModel(
     fun onRyderClick() = intent {
         postSideEffect(HomeEffect.GoToRyderList)
     }
+
+    fun onMoviesClick() = intent {
+        postSideEffect(HomeEffect.GoToMovieList)
+    }
 }

@@ -23,6 +23,7 @@ class AppDeepLinkLocalDataSource(
         const val FARE_LIST = "moove://app/fare_list"
         const val CONFIRM_CONFIRMATION = "/ticket/confirmation"
         const val MOOVE_CONFIRM_CONFIRMATION = "moove://app/confirmation"
+        const val MOVIE_DETAILS = "movieapp://moviedetails"
     }
 
     suspend fun getDeepLinkData(uri: String): DeepLink = withContext(backgroundDispatcher) {
@@ -55,6 +56,11 @@ class AppDeepLinkLocalDataSource(
                 val innerUri = URI.create(uri)
                 val params = getQueryParams(innerUri)
                 AppDeepLink.FareList(ryderId = params[RYDER_ID]!!)
+            }
+
+            uri.startsWith(MOVIE_DETAILS) -> {
+                val movieId = URI.create(uri).path?.trim('/')?.toLongOrNull()
+                if (movieId != null) AppDeepLink.MovieDetails(movieId) else AppDeepLink.Unknown
             }
 
             uri.isThat(HOME) || uri.matchesPattern(HOME) -> AppDeepLink.Home

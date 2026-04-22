@@ -11,6 +11,8 @@ navigation = "2.7.7"
 koin = "3.5.6"
 koin_android = "3.5.6"
 koin_compose = "3.5.6"
+hilt = "2.51.1"
+androidx_hilt = "1.2.0"
 # presentation
 orbit = "7.1.1"
 # ui
@@ -64,6 +66,11 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin_and
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin_compose" }
 koin-test-core = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+androidx-hilt-navigation-fragment = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "androidx_hilt" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidx_hilt" }
 # presentation
 orbit-viewmodel = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbit" }
 orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit" }

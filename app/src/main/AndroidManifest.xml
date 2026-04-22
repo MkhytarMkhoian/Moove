@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".app.MooveApp"
         android:allowBackup="true"
@@ -74,6 +76,17 @@
                 <!-- Corporate subdomains -->
                 <data android:host="${firebaseDynamicLinkHost}" />
 
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Movies deeplink: movieapp://moviedetails/{id} -->
+                <data android:scheme="movieapp" />
+                <data android:host="moviedetails" />
             </intent-filter>
 
             <nav-graph android:value="@navigation/app_main_navigation" />

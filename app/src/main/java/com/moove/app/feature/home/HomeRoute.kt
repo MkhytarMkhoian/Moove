@@ -20,6 +20,7 @@ fun HomeRoute(
         uiState = state,
         scaffoldState = scaffoldState,
         onRyderClick = viewModel::onRyderClick,
+        onMoviesClick = viewModel::onMoviesClick,
     )
 
     viewModel.RenderEffect(navigator = navigator)
@@ -31,9 +32,8 @@ private fun HomeViewModel.RenderEffect(
 ) {
     composableEffect { effect ->
         when (effect) {
-            is HomeEffect.GoToRyderList -> {
-                navigator.goRyderList()
-            }
+            HomeEffect.GoToRyderList -> navigator.goRyderList()
+            HomeEffect.GoToMovieList -> navigator.goMovies()
         }
     }
 }

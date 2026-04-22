@@ -1,7 +1,5 @@
 package com.moove.app.di
 
-import com.google.firebase.Firebase
-import com.google.firebase.dynamiclinks.dynamicLinks
 import com.moove.BuildConfig
 import com.moove.app.feature.deeplink.data.DeeplinkDataRepository
 import com.moove.app.feature.deeplink.data.DynamicLinkDataRepository
@@ -23,12 +21,12 @@ val deepLinkModule = module {
         DeepLinkAppNavigator(
             ticketsNavigator = get(),
             globalAppNavigator = get(),
+            moviesNavigator = get(),
         )
     }
     factory {
         FirebaseDynamicLinkDataSource(
             host = BuildConfig.FIREBASE_DYNAMIC_LINK_HOST,
-//            firebaseDynamicLinks = Firebase.dynamicLinks
         )
     }
     factory { AppDeepLinkLocalDataSource() }

@@ -3,6 +3,7 @@ package com.moove.app.navigation
 import androidx.navigation.NavController
 import com.moove.MobileNavigationDirections
 import com.moove.app.feature.home.HomeFragmentDirections
+import com.moove.movies.presentation.list.MovieListFragmentDirections
 import com.moove.shared.navigation.GlobalAppNavigator
 import com.moove.shared.navigation.navigateSafely
 import com.moove.tickets.presentation.fare.FareListFragmentDirections
@@ -28,6 +29,21 @@ class AppNavigator(
                     description = fareDescription,
                     price = farePrice
                 )
+            )
+        )
+    }
+
+    override fun goToMovieList() {
+        navController.navigateSafely(HomeFragmentDirections.actionHomeFragmentToMoviesFlow())
+    }
+
+    override fun goToMovieDetails(movieId: Long) {
+        if (navController.currentDestination?.id != com.moove.movies.R.id.movieListFragment) {
+            goToMovieList()
+        }
+        navController.navigateSafely(
+            MovieListFragmentDirections.actionMovieListFragmentToMovieDetailsFragment(
+                movieId = movieId,
             )
         )
     }
