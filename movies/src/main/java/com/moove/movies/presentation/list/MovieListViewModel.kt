@@ -10,8 +10,6 @@ import com.moove.core.exception.asCoroutineExceptionHandler
 import com.moove.movies.domain.use_cases.GetPopularMoviesUseCase
 import com.moove.movies.presentation.list.model.MovieSummaryModel
 import com.moove.movies.presentation.list.model.asPresentation
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.orbitmvi.orbit.Container
@@ -20,8 +18,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.viewmodel.container
 
-@HiltViewModel
-class MovieListViewModel @Inject constructor(
+class MovieListViewModel(
     exceptionHandler: ExceptionHandler,
     getPopularMoviesUseCase: GetPopularMoviesUseCase,
 ) : ViewModel(), ContainerHost<MovieListState, MovieListEffect> {

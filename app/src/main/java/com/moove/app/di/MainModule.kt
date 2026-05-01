@@ -5,8 +5,6 @@ import com.moove.app.feature.home.HomeViewModel
 import com.moove.app.main.MainActivityViewModel
 import com.moove.app.main.MainNavigator
 import com.moove.app.navigation.AppNavigator
-import com.moove.movies.presentation.details.MovieDetailsNavigator
-import com.moove.movies.presentation.list.MovieListNavigator
 import com.moove.shared.navigation.GlobalAppNavigator
 import com.moove.shared.navigation.MoviesNavigator
 import com.moove.shared.navigation.ScreenNavigator
@@ -34,9 +32,6 @@ val mainModule = module {
         )
     }
     viewModelOf(::HomeViewModel)
-
-    factory { MovieListNavigator(get(), get()) }
-    factory { MovieDetailsNavigator(get()) }
 
     viewModelOf(::MainActivityViewModel)
     factoryOf(::MainNavigator)

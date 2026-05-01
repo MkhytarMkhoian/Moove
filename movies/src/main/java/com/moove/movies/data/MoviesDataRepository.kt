@@ -6,20 +6,17 @@ import androidx.paging.PagingData
 import com.moove.movies.data.net.MoviesRemoteDataSource
 import com.moove.movies.data.net.PopularMoviesPagingSource
 import com.moove.movies.data.net.dto.asDomain
-import com.moove.movies.di.IoDispatcher
 import com.moove.movies.domain.MoviesRepository
 import com.moove.movies.domain.model.MovieDetails
 import com.moove.movies.domain.model.MovieSummary
-import javax.inject.Inject
-import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
-@Singleton
-internal class MoviesDataRepository @Inject constructor(
+internal class MoviesDataRepository(
     private val remoteDataSource: MoviesRemoteDataSource,
-    @IoDispatcher private val backgroundDispatcher: CoroutineDispatcher,
+    private val backgroundDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : MoviesRepository {
 
     override fun getPopular(): Flow<PagingData<MovieSummary>> =

@@ -7,7 +7,6 @@
     <string name="movies_retry">Retry</string>
     <string name="movies_rating_format">★ %1$.1f</string>
     <string name="movies_release_year_unknown">—</string>
-    <string name="movies_loading">Loading…</string>
     <string name="movie_poster_content_description">Movie poster for %1$s</string>
     <string name="movie_details_overview_title">Overview</string>
     <string name="movie_details_genres_title">Genres</string>

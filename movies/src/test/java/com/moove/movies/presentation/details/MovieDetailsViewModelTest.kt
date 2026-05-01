@@ -1,6 +1,5 @@
 package com.moove.movies.presentation.details
 
-import androidx.lifecycle.SavedStateHandle
 import com.moove.core.exception.ExceptionHandler
 import com.moove.movies.data.net.dto.asDomain
 import com.moove.movies.data.net.dto.randomMovieDetailsDTO
@@ -53,7 +52,7 @@ class MovieDetailsViewModelTest {
 
     private fun buildViewModel(movieId: Long): MovieDetailsViewModel = MovieDetailsViewModel(
         exceptionHandler = exceptionHandler,
-        savedStateHandle = SavedStateHandle(mapOf(MovieDetailsViewModel.ARG_MOVIE_ID to movieId)),
+        movieId = movieId,
         getMovieDetailsUseCase = getMovieDetailsUseCase,
     )
 }

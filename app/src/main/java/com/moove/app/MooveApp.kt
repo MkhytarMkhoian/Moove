@@ -6,14 +6,11 @@ import com.moove.app.di.deepLinkModule
 import com.moove.app.di.exceptionsModule
 import com.moove.app.di.mainModule
 import com.moove.app.di.netModule
+import com.moove.movies.di.moviesModule
 import com.moove.tickets.di.ticketsModule
-import dagger.hilt.android.HiltAndroidApp
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
 
-@HiltAndroidApp
 open class MooveApp : Application() {
 
     override fun onCreate() {
@@ -24,12 +21,12 @@ open class MooveApp : Application() {
     private fun setupDependencyInjection() {
         startKoin {
             androidContext(this@MooveApp)
-//            androidLogger(if (BuildConfig.DEBUG) Level.INFO else Level.NONE)
             modules(
                 mainModule,
                 coroutineModule,
                 exceptionsModule,
                 ticketsModule,
+                moviesModule,
                 netModule,
                 deepLinkModule,
             )

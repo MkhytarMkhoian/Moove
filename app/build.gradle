@@ -4,7 +4,6 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.google.devtools.ksp'
     id 'androidx.navigation.safeargs.kotlin'
-    id 'com.google.dagger.hilt.android'
 }
 apply from: "${rootProject.projectDir}/gradle/base-android-config.gradle"
 apply from: "${rootProject.projectDir}/gradle/compose-android-config.gradle"
@@ -46,10 +45,6 @@ dependencies {
 
     // region di
     implementation libs.bundles.koin
-    implementation libs.hilt.android
-    implementation libs.androidx.hilt.navigation.fragment
-    implementation libs.androidx.hilt.navigation.compose
-    ksp libs.hilt.compiler
     // endregion
 
     // region presentation

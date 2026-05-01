@@ -4,7 +4,6 @@ plugins {
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.devtools.ksp'
-    id 'com.google.dagger.hilt.android'
 }
 
 apply from: "${rootProject.projectDir}/gradle/base-android-config.gradle"
@@ -30,11 +29,6 @@ android {
 dependencies {
 
     implementation project(':shared')
-
-    implementation libs.hilt.android
-    ksp libs.hilt.compiler
-    implementation libs.androidx.hilt.navigation.fragment
-    implementation libs.androidx.hilt.navigation.compose
 
     ksp libs.moshi.compiler
 

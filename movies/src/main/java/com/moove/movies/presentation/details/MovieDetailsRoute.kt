@@ -5,15 +5,17 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.moove.shared.presentation.compose.component.showGenericError
 import com.moove.shared.presentation.viewmodel.composableEffect
 import com.moove.shared.presentation.viewmodel.composableState
+import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun MovieDetailsRoute(
     navigator: MovieDetailsNavigator,
-    viewModel: MovieDetailsViewModel = hiltViewModel(),
+    movieId: Long,
+    viewModel: MovieDetailsViewModel = koinViewModel { parametersOf(movieId) },
     scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
     val state by viewModel.composableState()

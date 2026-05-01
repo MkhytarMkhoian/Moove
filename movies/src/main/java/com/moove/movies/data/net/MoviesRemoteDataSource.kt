@@ -5,10 +5,9 @@ import com.moove.movies.data.net.dto.MovieDetailsDTO
 import com.moove.movies.data.net.dto.PopularMoviesResponseDTO
 import com.moove.movies.domain.exceptions.MovieNotFoundException
 import com.moove.movies.domain.exceptions.MoviesApiException
-import javax.inject.Inject
 import retrofit2.HttpException
 
-internal class MoviesRemoteDataSource @Inject constructor(
+internal class MoviesRemoteDataSource(
     private val tmdbApi: TmdbApi,
 ) {
 
