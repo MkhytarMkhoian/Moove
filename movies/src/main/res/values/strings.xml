@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movies_list_title">Popular Movies</string>
+    <string name="movie_details_title">Movie Details</string>
+    <string name="movies_error_title">Couldn\'t load movies</string>
+    <string name="movie_details_error_title">Couldn\'t load movie</string>
+    <string name="movies_retry">Retry</string>
+    <string name="movies_rating_format">★ %1$.1f</string>
+    <string name="movies_release_year_unknown">—</string>
+    <string name="movie_poster_content_description">Movie poster for %1$s</string>
+    <string name="movie_details_overview_title">Overview</string>
+    <string name="movie_details_genres_title">Genres</string>
+    <string name="movie_details_release_date_title">Released</string>
+    <string name="movie_details_runtime_title">Runtime</string>
+    <string name="movie_details_runtime_minutes_format">%1$d min</string>
+    <string name="movie_details_back_content_description">Navigate up</string>
+</resources>

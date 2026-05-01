@@ -6,6 +6,7 @@ import com.moove.app.main.MainActivityViewModel
 import com.moove.app.main.MainNavigator
 import com.moove.app.navigation.AppNavigator
 import com.moove.shared.navigation.GlobalAppNavigator
+import com.moove.shared.navigation.MoviesNavigator
 import com.moove.shared.navigation.ScreenNavigator
 import com.moove.shared.navigation.TicketsNavigator
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -21,6 +22,7 @@ val mainModule = module {
         ScreenNavigator::class,
         GlobalAppNavigator::class,
         TicketsNavigator::class,
+        MoviesNavigator::class,
     )
 
     factory {

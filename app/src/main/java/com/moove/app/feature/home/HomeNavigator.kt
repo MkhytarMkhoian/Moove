@@ -13,6 +13,10 @@ class HomeNavigator(
         navController.navigateSafely(HomeFragmentDirections.actionHomeFragmentToTicketsFlow())
     }
 
+    fun goMovies() {
+        navController.navigateSafely(HomeFragmentDirections.actionHomeFragmentToMoviesFlow())
+    }
+
     override fun goBack() {
         screenNavigator.goBack()
     }

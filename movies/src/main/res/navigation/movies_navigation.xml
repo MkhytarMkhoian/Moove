@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/movies_flow"
+    app:startDestination="@id/movieListFragment"
+    >
+
+    <fragment
+        android:id="@+id/movieListFragment"
+        android:name="com.moove.movies.presentation.list.MovieListFragment"
+        android:label="@string/movies_list_title"
+        >
+
+        <action
+            android:id="@+id/action_movieListFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment"
+            >
+            <argument
+                android:name="movieId"
+                app:argType="long"
+                />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.moove.movies.presentation.details.MovieDetailsFragment"
+        android:label="@string/movie_details_title"
+        >
+
+        <argument
+            android:name="movieId"
+            app:argType="long"
+            />
+    </fragment>
+
+</navigation>

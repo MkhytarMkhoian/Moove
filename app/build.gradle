@@ -25,6 +25,7 @@ dependencies {
     // region Project
     implementation project(':shared')
     implementation project(':tickets')
+    implementation project(':movies')
     // endregion
 
     // region AndroidX

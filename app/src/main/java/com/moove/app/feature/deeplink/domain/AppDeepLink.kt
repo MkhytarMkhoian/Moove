@@ -12,4 +12,6 @@ sealed class AppDeepLink: DeepLink {
         val ryderId: String,
         val fare: Fare,
     ) : AppDeepLink()
+
+    data class MovieDetails(val movieId: Long) : AppDeepLink()
 }

@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_homeFragment_to_tickets_flow"
             app:destination="@id/tickets_flow" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_movies_flow"
+            app:destination="@id/movies_flow" />
     </fragment>
 
     <action
@@ -20,5 +24,6 @@
         app:destination="@id/homeFragment" />
 
     <include app:graph="@navigation/tickets_navigation" />
+    <include app:graph="@navigation/movies_navigation" />
 
 </navigation>

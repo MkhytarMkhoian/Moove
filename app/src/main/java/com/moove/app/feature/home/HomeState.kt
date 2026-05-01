@@ -8,4 +8,5 @@ class HomeState : Parcelable
 
 sealed class HomeEffect {
     data object GoToRyderList : HomeEffect()
+    data object GoToMovieList : HomeEffect()
 }
