@@ -10,9 +10,6 @@ import com.moove.tickets.presentation.fare.model.FareModel
 import com.moove.tickets.presentation.fare.model.asPresentation
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
-import org.orbitmvi.orbit.syntax.simple.intent
-import org.orbitmvi.orbit.syntax.simple.postSideEffect
-import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 
 class FareListViewModel(
@@ -37,7 +34,7 @@ class FareListViewModel(
 
     private fun fetchFares() = intent {
         reduce { state.copy(status = ScreenContentStatus.Loading) }
-        executeUseCase { getFaresByIdUseCase(ryderId) }
+        executeUseCase(exceptionHandler) { getFaresByIdUseCase(ryderId) }
             .onSuccess {
                 reduce {
                     state.copy(

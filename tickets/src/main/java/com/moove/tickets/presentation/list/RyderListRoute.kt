@@ -8,12 +8,12 @@ import androidx.compose.ui.platform.LocalContext
 import com.moove.shared.presentation.compose.component.showGenericError
 import com.moove.shared.presentation.viewmodel.composableEffect
 import com.moove.shared.presentation.viewmodel.composableState
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RyderListRoute(
     navigator: RyderListNavigator,
-    viewModel: RyderListViewModel = getViewModel(),
+    viewModel: RyderListViewModel = koinViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
     val state by viewModel.composableState()

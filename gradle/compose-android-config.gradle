@@ -1,8 +1,9 @@
+// Kotlin 2 ships the Compose compiler as a Kotlin plugin, versioned with Kotlin itself, so there
+// is no compiler-extension version to pin any more.
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
+
 android {
     buildFeatures {
         compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
     }
 }

@@ -40,6 +40,32 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.handleIntent(intent)
 
         observeSideEffect()
+        registerBackHandling()
+    }
+
+    /**
+     * The Android 10 workaround that used to live in `onBackPressed`: leaving the task root with
+     * `finishAfterTransition` rather than the default, which loses the exit transition there.
+     * Registered as a callback because back gestures no longer reach `onBackPressed`.
+     */
+    private fun registerBackHandling() {
+        onBackPressedDispatcher.addCallback(this) {
+            val backStackEntryCount = supportFragmentManager.primaryNavigationFragment
+                ?.childFragmentManager
+                ?.backStackEntryCount ?: 0
+
+            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q &&
+                isTaskRoot &&
+                backStackEntryCount == 0 && supportFragmentManager.backStackEntryCount == 0
+            ) {
+                finishAfterTransition()
+            } else {
+                // Let the default handling run: disable this callback and dispatch again.
+                isEnabled = false
+                onBackPressedDispatcher.onBackPressed()
+                isEnabled = true
+            }
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -62,21 +88,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-    }
-
-    override fun onBackPressed() {
-        val backStackEntryCount = supportFragmentManager.primaryNavigationFragment
-            ?.childFragmentManager
-            ?.backStackEntryCount ?: 0
-
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q &&
-            isTaskRoot &&
-            backStackEntryCount == 0 && supportFragmentManager.backStackEntryCount == 0
-        ) {
-            finishAfterTransition()
-        } else {
-            super.onBackPressed()
         }
     }
 }

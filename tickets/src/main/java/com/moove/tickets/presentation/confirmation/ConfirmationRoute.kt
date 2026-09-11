@@ -5,13 +5,13 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import com.moove.shared.R
 import com.moove.shared.presentation.compose.component.showGenericError
 import com.moove.shared.presentation.compose.component.showSnackBar
 import com.moove.shared.presentation.viewmodel.composableEffect
 import com.moove.shared.presentation.viewmodel.composableState
 import com.moove.tickets.presentation.fare.model.FareModel
-import org.koin.androidx.compose.getViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -42,12 +42,11 @@ private fun ConfirmationViewModel.RenderEffect(
     navigator: ConfirmationNavigator,
 ) {
     val context = LocalContext.current
+    val successMessage = stringResource(R.string.confirm_success)
     composableEffect { effect ->
         when (effect) {
             ConfirmationEffect.ShowGenericError -> scaffoldState.showGenericError(context)
-            ConfirmationEffect.ShowSuccessMessage -> scaffoldState.showSnackBar(
-                context.getString(R.string.confirm_success)
-            )
+            ConfirmationEffect.ShowSuccessMessage -> scaffoldState.showSnackBar(successMessage)
         }
     }
 }

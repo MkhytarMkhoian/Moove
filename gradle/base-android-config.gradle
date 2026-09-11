@@ -1,12 +1,14 @@
 android {
-    compileSdkVersion androidSetup.compileSdkVersion
+    compileSdk androidSetup.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion androidSetup.minSdkVersion
-        targetSdkVersion androidSetup.targetSdkVersion
+        minSdk androidSetup.minSdkVersion
+        targetSdk androidSetup.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    def shrinks = project.plugins.hasPlugin('com.android.application')
 
     buildTypes {
         debug {
@@ -14,12 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         review {
-            minifyEnabled true
+            minifyEnabled shrinks
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             matchingFallbacks = ['release']
         }
         release {
-            minifyEnabled true
+            minifyEnabled shrinks
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -30,31 +32,32 @@ android {
         coreLibraryDesugaringEnabled true
     }
 
-    kotlinOptions {
-        jvmTarget = '17'
-        freeCompilerArgs += [
-                '-opt-in=kotlin.RequiresOptIn',
-                '-opt-in=kotlin.ExperimentalStdlibApi',
-                '-opt-in=kotlin.contracts.ExperimentalContracts',
-                '-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi',
-                '-opt-in=kotlinx.coroutines.FlowPreview',
-        ]
-    }
-
     buildFeatures {
         buildConfig true
         dataBinding false
         viewBinding true
     }
 
-    lintOptions {
+    lint {
         abortOnError true
         ignoreWarnings false
-        disable 'WrongConstant',
+        disable += ['WrongConstant',
                 'ContentDescription',
                 'VectorPath', 'VectorRaster',
-                'Typos', 'TypographyDashes', 'TypographyEllipsis', 'PluralsCandidate', 'ButtonCase'
+                'Typos', 'TypographyDashes', 'TypographyEllipsis', 'PluralsCandidate', 'ButtonCase']
         lintConfig file("${rootProject.projectDir}/lint.xml")
+    }
+}
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll(
+                '-opt-in=kotlin.RequiresOptIn',
+                '-opt-in=kotlin.ExperimentalStdlibApi',
+                '-opt-in=kotlin.contracts.ExperimentalContracts',
+                '-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi',
+                '-opt-in=kotlinx.coroutines.FlowPreview',
+        )
     }
 }
 

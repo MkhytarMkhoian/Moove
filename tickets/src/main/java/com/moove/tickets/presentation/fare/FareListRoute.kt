@@ -8,7 +8,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.moove.shared.presentation.compose.component.showGenericError
 import com.moove.shared.presentation.viewmodel.composableEffect
 import com.moove.shared.presentation.viewmodel.composableState
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 

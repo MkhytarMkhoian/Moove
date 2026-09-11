@@ -1,9 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.androidSetup = [
-            'compileSdkVersion': 34,
-            'minSdkVersion'    : 23,
-            'targetSdkVersion' : 34
+            'compileSdkVersion': 37,
+            'minSdkVersion'    : 24,
+            'targetSdkVersion' : 37
     ]
 
     ext {
@@ -19,20 +19,31 @@ buildscript {
         classpath libs.gradle.get()
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}"
         classpath "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${libs.versions.ksp.get()}"
+        classpath libs.kotlin.compose.compiler.plugin.get()
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${libs.versions.navigation.get()}"
     }
 }
 
 plugins {
-    id 'org.jetbrains.dokka' version '1.9.10'
+    id 'org.jetbrains.dokka' version '2.2.0'
 }
 
 subprojects {
     apply plugin: 'org.jetbrains.dokka'
 }
 
-// configure only the HTML task
-dokkaHtmlMultiModule {
+dependencies {
+    dokka project(':app')
+    dokka project(':core')
+    dokka project(':design-system')
+    dokka project(':movies')
+    dokka project(':shared')
+    dokka project(':tickets')
+}
+
+dokka {
     moduleName.set("Moove Documentation")
-    outputDirectory.set(file("android-docs/docs/api"))
+    dokkaPublications.html {
+        outputDirectory.set(file("android-docs/docs/api"))
+    }
 }

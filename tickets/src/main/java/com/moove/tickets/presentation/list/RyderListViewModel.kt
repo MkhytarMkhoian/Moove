@@ -10,9 +10,6 @@ import com.moove.tickets.presentation.list.model.RyderModel
 import com.moove.tickets.presentation.list.model.asPresentation
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
-import org.orbitmvi.orbit.syntax.simple.intent
-import org.orbitmvi.orbit.syntax.simple.postSideEffect
-import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 
 class RyderListViewModel(
@@ -36,7 +33,7 @@ class RyderListViewModel(
 
     private fun fetchRyders() = intent {
         reduce { state.copy(status = ScreenContentStatus.Loading) }
-        executeUseCase { getRydersUseCase() }
+        executeUseCase(exceptionHandler) { getRydersUseCase() }
             .onSuccess {
                 reduce {
                     state.copy(

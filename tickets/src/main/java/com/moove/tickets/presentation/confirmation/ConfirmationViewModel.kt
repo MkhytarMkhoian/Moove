@@ -10,9 +10,6 @@ import com.moove.tickets.presentation.fare.model.FareModel
 import com.moove.tickets.presentation.fare.model.asDomain
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
-import org.orbitmvi.orbit.syntax.simple.intent
-import org.orbitmvi.orbit.syntax.simple.postSideEffect
-import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 
 class ConfirmationViewModel(
@@ -58,7 +55,7 @@ class ConfirmationViewModel(
 
     fun onConfirmClick() = intent {
         reduce { state.copy(status = ScreenContentStatus.Loading) }
-        executeUseCase {
+        executeUseCase(exceptionHandler) {
             buyTicketUseCase(
                 ryderId = state.ryderId,
                 fare = state.fare.asDomain(),

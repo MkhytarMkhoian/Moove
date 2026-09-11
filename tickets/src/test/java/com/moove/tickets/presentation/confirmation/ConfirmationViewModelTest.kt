@@ -12,10 +12,9 @@ import com.moove.tickets.presentation.fare.model.asPresentation
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import org.orbitmvi.orbit.test
+import org.orbitmvi.orbit.test.test
 
 class ConfirmationViewModelTest {
 
@@ -37,29 +36,22 @@ class ConfirmationViewModelTest {
     private val buyTicketUseCase: BuyTicketUseCase = mockk(relaxed = true)
     private val exceptionHandler = mockk<ExceptionHandler>(relaxed = true)
 
-    private fun TestScope.createViewModel(
-        state: ConfirmationState = defaultState,
-    ) = ConfirmationViewModel(
+
+    private fun createViewModel() = ConfirmationViewModel(
         exceptionHandler = exceptionHandler,
         buyTicketUseCase = buyTicketUseCase,
         ryderId = ryderId,
         fare = fare,
-    ).test(
-        initialState = state,
-        buildSettings = { isolateFlow = false }
     )
 
     @Test
     fun `On Confirm click post effect`() = runTest {
-        createViewModel(defaultState)
-            .testIntent { onConfirmClick() }
-            .assert(defaultState) {
-                states(
-                    { copy(status = ScreenContentStatus.Loading) },
-                    { copy(status = ScreenContentStatus.Success) }
-                )
-                postedSideEffects(ConfirmationEffect.ShowSuccessMessage)
-            }
+        createViewModel().test(this, initialState = defaultState) {
+            containerHost.onConfirmClick()
+            expectState { copy(status = ScreenContentStatus.Loading) }
+            expectState { copy(status = ScreenContentStatus.Success) }
+            expectSideEffect(ConfirmationEffect.ShowSuccessMessage)
+        }
 
         coVerify {
             buyTicketUseCase(
@@ -81,15 +73,12 @@ class ConfirmationViewModelTest {
             )
         } throws error
 
-        createViewModel(defaultState)
-            .testIntent { onConfirmClick() }
-            .assert(defaultState) {
-                states(
-                    { copy(status = ScreenContentStatus.Loading) },
-                    { copy(status = ScreenContentStatus.Failure) }
-                )
-                postedSideEffects(ConfirmationEffect.ShowGenericError)
-            }
+        createViewModel().test(this, initialState = defaultState) {
+            containerHost.onConfirmClick()
+            expectState { copy(status = ScreenContentStatus.Loading) }
+            expectState { copy(status = ScreenContentStatus.Failure) }
+            expectSideEffect(ConfirmationEffect.ShowGenericError)
+        }
 
         coVerify {
             buyTicketUseCase(
@@ -105,18 +94,15 @@ class ConfirmationViewModelTest {
         val ticketCount = defaultState.ticketCount + 1
         val totalPrice = defaultState.fare.price * ticketCount
 
-        createViewModel(defaultState)
-            .testIntent { onIncrementTicketClick() }
-            .assert(defaultState) {
-                states(
-                    {
-                        copy(
-                            ticketCount = ticketCount,
-                            totalPrice = totalPrice
-                        )
-                    },
+        createViewModel().test(this, initialState = defaultState) {
+            containerHost.onIncrementTicketClick()
+            expectState {
+                copy(
+                    ticketCount = ticketCount,
+                    totalPrice = totalPrice
                 )
             }
+        }
     }
 
     @Test
@@ -124,17 +110,14 @@ class ConfirmationViewModelTest {
         val ticketCount = defaultState.ticketCount - 1
         val totalPrice = defaultState.fare.price * ticketCount
 
-        createViewModel(defaultState)
-            .testIntent { onDecrementTicketClick() }
-            .assert(defaultState) {
-                states(
-                    {
-                        copy(
-                            ticketCount = ticketCount,
-                            totalPrice = totalPrice
-                        )
-                    },
+        createViewModel().test(this, initialState = defaultState) {
+            containerHost.onDecrementTicketClick()
+            expectState {
+                copy(
+                    ticketCount = ticketCount,
+                    totalPrice = totalPrice
                 )
             }
+        }
     }
 }

@@ -9,14 +9,11 @@ import com.moove.shared.presentation.compose.component.ScreenContentStatus
 import com.moove.shared.presentation.viewmodel.executeUseCase
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
-import org.orbitmvi.orbit.syntax.simple.SimpleSyntax
-import org.orbitmvi.orbit.syntax.simple.intent
-import org.orbitmvi.orbit.syntax.simple.postSideEffect
-import org.orbitmvi.orbit.syntax.simple.reduce
+import org.orbitmvi.orbit.syntax.Syntax
 import org.orbitmvi.orbit.viewmodel.container
 
 class MovieDetailsViewModel(
-    exceptionHandler: ExceptionHandler,
+    private val exceptionHandler: ExceptionHandler,
     private val movieId: Long,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
 ) : ViewModel(), ContainerHost<MovieDetailsState, MovieDetailsEffect> {
@@ -24,7 +21,8 @@ class MovieDetailsViewModel(
     override val container: Container<MovieDetailsState, MovieDetailsEffect> = container(
         initialState = MovieDetailsState(),
         buildSettings = {
-            this.exceptionHandler = exceptionHandler.asCoroutineExceptionHandler()
+            this.exceptionHandler =
+                this@MovieDetailsViewModel.exceptionHandler.asCoroutineExceptionHandler()
         },
     ) {
         fetchDetails()
@@ -34,9 +32,9 @@ class MovieDetailsViewModel(
 
     fun onBack() = intent { postSideEffect(MovieDetailsEffect.GoBack) }
 
-    private suspend fun SimpleSyntax<MovieDetailsState, MovieDetailsEffect>.fetchDetails() {
+    private suspend fun Syntax<MovieDetailsState, MovieDetailsEffect>.fetchDetails() {
         reduce { state.copy(status = ScreenContentStatus.Loading) }
-        executeUseCase { getMovieDetailsUseCase(movieId) }
+        executeUseCase(exceptionHandler) { getMovieDetailsUseCase(movieId) }
             .onSuccess { details ->
                 reduce {
                     state.copy(

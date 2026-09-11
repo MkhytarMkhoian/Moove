@@ -10,10 +10,9 @@ import com.moove.tickets.presentation.fare.model.asPresentation
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import org.orbitmvi.orbit.test
+import org.orbitmvi.orbit.test.test
 
 class FareListViewModelTest {
 
@@ -32,33 +31,26 @@ class FareListViewModelTest {
     private val getFaresByIdUseCase: GetFaresByIdUseCase = mockk(relaxed = true)
     private val exceptionHandler = mockk<ExceptionHandler>(relaxed = true)
 
-    private fun TestScope.createViewModel(
-        state: FareListState = defaultState,
-    ) = FareListViewModel(
+
+    private fun createViewModel() = FareListViewModel(
         exceptionHandler = exceptionHandler,
         getFaresByIdUseCase = getFaresByIdUseCase,
         ryderId = ryderId,
-    ).test(
-        initialState = state,
-        buildSettings = { isolateFlow = false }
     )
 
     @Test
     fun `On init fetch fares successfully`() = runTest {
         coEvery { getFaresByIdUseCase(ryderId) } returns faresList
-        createViewModel()
-            .runOnCreate()
-            .assert(defaultState) {
-                states(
-                    { copy(status = ScreenContentStatus.Loading) },
-                    {
-                        copy(
-                            status = ScreenContentStatus.Success,
-                            fares = faresList.asPresentation()
-                        )
-                    }
+        createViewModel().test(this, initialState = defaultState) {
+            runOnCreate()
+            expectState { copy(status = ScreenContentStatus.Loading) }
+            expectState {
+                copy(
+                    status = ScreenContentStatus.Success,
+                    fares = faresList.asPresentation()
                 )
             }
+        }
         coVerify { getFaresByIdUseCase(ryderId) }
     }
 
@@ -66,29 +58,25 @@ class FareListViewModelTest {
     fun `On init fetch fares with error should show error message`() = runTest {
         val error = RuntimeException("test")
         coEvery { getFaresByIdUseCase(ryderId) } throws error
-        createViewModel()
-            .runOnCreate()
-            .assert(defaultState) {
-                states(
-                    { copy(status = ScreenContentStatus.Loading) },
-                    { copy(status = ScreenContentStatus.Failure) }
-                )
-                postedSideEffects(FareListEffect.ShowGenericError)
-            }
+        createViewModel().test(this, initialState = defaultState) {
+            runOnCreate()
+            expectState { copy(status = ScreenContentStatus.Loading) }
+            expectState { copy(status = ScreenContentStatus.Failure) }
+            expectSideEffect(FareListEffect.ShowGenericError)
+        }
         coVerify { getFaresByIdUseCase(ryderId) }
     }
 
     @Test
     fun `On Fare click post effect`() = runTest {
-        createViewModel(defaultState)
-            .testIntent { onFareClick(fare.asPresentation()) }
-            .assert(defaultState) {
-                postedSideEffects(
-                    FareListEffect.GoToConfirmation(
-                        ryderId = ryder.id,
-                        fare = fare.asPresentation()
-                    )
+        createViewModel().test(this, initialState = defaultState) {
+            containerHost.onFareClick(fare.asPresentation())
+            expectSideEffect(
+                FareListEffect.GoToConfirmation(
+                    ryderId = ryder.id,
+                    fare = fare.asPresentation()
                 )
-            }
+            )
+        }
     }
 }
