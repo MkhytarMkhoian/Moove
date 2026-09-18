@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# Navigation safe-args loads argument classes by the name written in the graph XML
+# (app:argType="com.moove...FareModel"), which R8 cannot see. Keep Parcelable names so a
+# renamed class does not turn into a ClassNotFoundException at inflation.
+-keepnames class * implements android.os.Parcelable

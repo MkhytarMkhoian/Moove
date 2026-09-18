@@ -36,12 +36,15 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.moove.movies.R
+import com.moove.movies.analytics.event.MovieImpression
+import com.moove.movies.analytics.event.MovieListRetried
 import com.moove.movies.presentation.list.component.MovieListError
 import com.moove.movies.presentation.list.component.MovieListItem
 import com.moove.movies.presentation.list.model.MovieSummaryModel
 import com.moove.movies.presentation.list.model.fakeMovieSummaryModels
 import com.moove.shared.presentation.compose.component.ScreenContent
 import com.moove.shared.presentation.compose.component.ScreenContentStatus
+import io.github.mkhytarmkhoian.herald.compose.trackImpression
 import kotlinx.coroutines.flow.flowOf
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -49,6 +52,8 @@ import kotlinx.coroutines.flow.flowOf
 fun MovieListScreen(
     lazyMovies: LazyPagingItems<MovieSummaryModel>,
     onMovieClick: (MovieSummaryModel) -> Unit,
+    onRefresh: () -> Unit,
+    onRetry: (MovieListRetried.Stage) -> Unit,
     scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
     val refresh = lazyMovies.loadState.refresh
@@ -62,7 +67,10 @@ fun MovieListScreen(
 
     val pullState = rememberPullRefreshState(
         refreshing = refresh is LoadState.Loading && !isEmpty,
-        onRefresh = { lazyMovies.refresh() },
+        onRefresh = {
+            lazyMovies.refresh()
+            onRefresh()
+        },
     )
 
     Scaffold(
@@ -80,7 +88,10 @@ fun MovieListScreen(
                 status = status,
                 error = {
                     MovieListError(
-                        onRetry = { lazyMovies.retry() },
+                        onRetry = {
+                            lazyMovies.retry()
+                            onRetry(MovieListRetried.Stage.INITIAL_LOAD)
+                        },
                         message = errorMessage,
                     )
                 },
@@ -100,13 +111,16 @@ fun MovieListScreen(
                                 MovieListItem(
                                     movie = movie,
                                     onClick = onMovieClick,
-                                    modifier = Modifier.padding(4.dp),
+                                    modifier = Modifier
+                                        .padding(4.dp)
+                                        .trackImpression(MovieImpression(movie.id)),
                                 )
                             }
                         }
 
                         appendLoadStateItem(lazyMovies.loadState.append) {
                             lazyMovies.retry()
+                            onRetry(MovieListRetried.Stage.NEXT_PAGE)
                         }
                     }
 
@@ -169,6 +183,6 @@ private fun PreviewMovieListSuccess() {
         flowOf(PagingData.from(fakeMovieSummaryModels))
     }.collectAsLazyPagingItems()
     MaterialTheme {
-        MovieListScreen(lazyMovies = lazyMovies, onMovieClick = {})
+        MovieListScreen(lazyMovies = lazyMovies, onMovieClick = {}, onRefresh = {}, onRetry = {})
     }
 }

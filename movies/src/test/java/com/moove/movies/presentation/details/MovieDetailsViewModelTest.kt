@@ -6,6 +6,7 @@ import com.moove.movies.data.net.dto.randomMovieDetailsDTO
 import com.moove.movies.domain.use_cases.GetMovieDetailsUseCase
 import com.moove.movies.presentation.details.model.asPresentation
 import com.moove.shared.presentation.compose.component.ScreenContentStatus
+import io.github.mkhytarmkhoian.herald.testing.FakeAnalyticsProvider
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,6 +19,7 @@ class MovieDetailsViewModelTest {
 
     private val exceptionHandler = ExceptionHandler { }
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase = mockk()
+    private val analytics = FakeAnalyticsProvider()
 
     @Test
     fun `given successful fetch on create then state becomes Success with details`() = runTest {
@@ -50,9 +52,27 @@ class MovieDetailsViewModelTest {
         }
     }
 
+    @Test
+    fun `given onRetry then the retry is tracked and nothing else is`() = runTest {
+        val domain = randomMovieDetailsDTO(id = 42L).asDomain()
+        coEvery { getMovieDetailsUseCase(42L) } returns domain
+        val subject = buildViewModel(movieId = 42L)
+
+        subject.test(this) {
+            expectInitialState()
+            containerHost.onRetry()
+            expectState { copy(status = ScreenContentStatus.Loading) }
+            expectState { copy(status = ScreenContentStatus.Success, details = domain.asPresentation()) }
+        }
+
+        analytics.assertTracked("movie_details_retried") { param("movie_id", 42L) }
+        analytics.assertNothingElseTracked()
+    }
+
     private fun buildViewModel(movieId: Long): MovieDetailsViewModel = MovieDetailsViewModel(
         exceptionHandler = exceptionHandler,
         movieId = movieId,
         getMovieDetailsUseCase = getMovieDetailsUseCase,
+        analyticsEventService = analytics,
     )
 }

@@ -16,6 +16,11 @@ dependencies {
 
     implementation project(':shared')
 
+    implementation libs.herald.core
+    implementation libs.herald.firebase
+    implementation libs.herald.mixpanel
+    implementation libs.herald.adjust
+
     ksp libs.moshi.compiler
 
     testImplementation libs.bundles.tests.unit

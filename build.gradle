@@ -33,6 +33,7 @@ subprojects {
 }
 
 dependencies {
+    dokka project(':analytics')
     dokka project(':app')
     dokka project(':core')
     dokka project(':design-system')

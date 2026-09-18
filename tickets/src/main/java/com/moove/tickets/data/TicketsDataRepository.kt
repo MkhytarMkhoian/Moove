@@ -5,6 +5,7 @@ import com.moove.tickets.data.local.dto.asDomain
 import com.moove.tickets.domain.TicketsRepository
 import com.moove.tickets.domain.model.Fare
 import com.moove.tickets.domain.model.Ryder
+import com.moove.tickets.domain.model.TicketReceipt
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -24,7 +25,12 @@ class TicketsDataRepository(
         data[ryderId]?.fares?.asDomain() ?: emptyList()
     }
 
-    override suspend fun buyTicket(ryderId: String, fare: Fare, totalCount: Int) {
-        // Implement request to the server
-    }
+    override suspend fun buyTicket(ryderId: String, fare: Fare, totalCount: Int): TicketReceipt =
+        withContext(backgroundDispatcher) {
+            ticketsLocalDataSource.buyTicket(
+                ryderId = ryderId,
+                fareDescription = fare.description,
+                totalCount = totalCount,
+            ).asDomain()
+        }
 }

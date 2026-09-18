@@ -11,3 +11,4 @@ local.properties
 /.idea/
 /android-docs/docs/api/
 /android-docs/html/
+/analytics/build/

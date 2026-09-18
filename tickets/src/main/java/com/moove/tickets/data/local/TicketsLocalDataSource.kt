@@ -1,9 +1,12 @@
 package com.moove.tickets.data.local
 
 import com.moove.tickets.data.local.dto.RyderDTO
+import com.moove.tickets.data.local.dto.TicketReceiptDTO
+import com.moove.tickets.domain.exceptions.TicketPurchaseException
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
+import java.util.UUID
 
 class TicketsLocalDataSource(
     private val moshi: Moshi
@@ -49,5 +52,20 @@ class TicketsLocalDataSource(
             .nullSafe()
 
         return adapter.fromJson(data)!!
+    }
+
+    fun buyTicket(ryderId: String, fareDescription: String, totalCount: Int): TicketReceiptDTO {
+        val fares = getData()[ryderId]?.fares.orEmpty()
+        if (fares.none { it.description == fareDescription }) {
+            throw TicketPurchaseException.FareUnavailable(ryderId = ryderId, fare = fareDescription)
+        }
+        if (totalCount > MAX_TICKETS_PER_PURCHASE) {
+            throw TicketPurchaseException.TicketLimitExceeded(requested = totalCount, max = MAX_TICKETS_PER_PURCHASE)
+        }
+        return TicketReceiptDTO(transactionId = UUID.randomUUID().toString())
+    }
+
+    private companion object {
+        const val MAX_TICKETS_PER_PURCHASE = 10
     }
 }

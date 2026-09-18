@@ -5,7 +5,9 @@ import com.moove.core.exception.ExceptionHandler
 import com.moove.core.exception.asCoroutineExceptionHandler
 import com.moove.shared.presentation.compose.component.ScreenContentStatus
 import com.moove.shared.presentation.viewmodel.executeUseCase
+import com.moove.tickets.analytics.event.FareSelected
 import com.moove.tickets.domain.use_cases.GetFaresByIdUseCase
+import io.github.mkhytarmkhoian.herald.EventTrackerService
 import com.moove.tickets.presentation.fare.model.FareModel
 import com.moove.tickets.presentation.fare.model.asPresentation
 import org.orbitmvi.orbit.Container
@@ -16,6 +18,7 @@ class FareListViewModel(
     private val exceptionHandler: ExceptionHandler,
     private val ryderId: String,
     private val getFaresByIdUseCase: GetFaresByIdUseCase,
+    private val analyticsEventService: EventTrackerService,
 ) : ViewModel(), ContainerHost<FareListState, FareListEffect> {
 
     override val container: Container<FareListState, FareListEffect> = container(
@@ -29,6 +32,7 @@ class FareListViewModel(
     }
 
     fun onFareClick(fare: FareModel) = intent {
+        analyticsEventService.track(FareSelected(ryderId, fare.description, fare.price.toDouble()))
         postSideEffect(FareListEffect.GoToConfirmation(ryderId, fare))
     }
 

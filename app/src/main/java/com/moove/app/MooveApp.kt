@@ -1,6 +1,7 @@
 package com.moove.app
 
 import android.app.Application
+import com.moove.analytics.di.analyticsModule
 import com.moove.app.di.coroutineModule
 import com.moove.app.di.deepLinkModule
 import com.moove.app.di.exceptionsModule
@@ -29,6 +30,7 @@ open class MooveApp : Application() {
                 moviesModule,
                 netModule,
                 deepLinkModule,
+                analyticsModule(this@MooveApp),
             )
         }
     }

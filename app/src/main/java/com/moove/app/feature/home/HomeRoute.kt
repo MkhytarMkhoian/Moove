@@ -21,6 +21,10 @@ fun HomeRoute(
         scaffoldState = scaffoldState,
         onRyderClick = viewModel::onRyderClick,
         onMoviesClick = viewModel::onMoviesClick,
+        onInspectorClick = viewModel::onInspectorClick,
+        onAnalyticsToggled = viewModel::onAnalyticsToggled,
+        onSignInClick = viewModel::onSignInClick,
+        onSignOutClick = viewModel::onSignOutClick,
     )
 
     viewModel.RenderEffect(navigator = navigator)
@@ -34,6 +38,7 @@ private fun HomeViewModel.RenderEffect(
         when (effect) {
             HomeEffect.GoToRyderList -> navigator.goRyderList()
             HomeEffect.GoToMovieList -> navigator.goMovies()
+            HomeEffect.GoToInspector -> navigator.goInspector()
         }
     }
 }

@@ -39,6 +39,14 @@ dependencies {
     api libs.orbit.compose
     // endregion
 
+    // region analytics
+    // The vocabulary and the capability interfaces, for every feature module; the composition
+    // root and the vendor adapters live in :analytics. herald-compose for the Routes that track
+    // on their own; the tracker is provided once, in setAppComposeContent.
+    api libs.herald.core
+    api libs.herald.compose
+    // endregion
+
     // region ui
     api libs.google.material
     api libs.androidx.constraintlayout

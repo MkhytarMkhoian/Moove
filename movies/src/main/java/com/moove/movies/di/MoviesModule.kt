@@ -81,6 +81,7 @@ val moviesModule = module {
         MovieListViewModel(
             exceptionHandler = get(),
             getPopularMoviesUseCase = get(),
+            analyticsEventService = get(),
         )
     }
     viewModel { (movieId: Long) ->
@@ -88,6 +89,7 @@ val moviesModule = module {
             exceptionHandler = get(),
             movieId = movieId,
             getMovieDetailsUseCase = get(),
+            analyticsEventService = get(),
         )
     }
     // endregion

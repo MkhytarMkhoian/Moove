@@ -195,7 +195,60 @@ For orbit-test's `OrbitExperimental`, the **new `org.orbitmvi.orbit.test.*` API 
   ```
   Then surface as `buildConfigField "String", "TMDB_API_KEY", "\"$tmdbApiKey\""`.
 
-## 10. Small but non-negotiable
+## 10. Analytics (Herald)
+
+Analytics vocabulary and vendor mapping live in the feature module that owns the behaviour, under `analytics/`. The composition root (`:analytics`) never names a feature event; features contribute through Koin.
+
+### Packages
+
+```
+com.moove.<feature>.analytics.
+  event/       one file per Event / ScreenViewEvent / RevenueEvent (+ feature marker interfaces such as ContentEvent)
+  property/    one file per Property / UserProperty
+  vendor/      per-vendor factories (dispatch only) and, in vendor/<vendor>/, custom handler classes
+```
+
+### Events and properties
+
+- **One class per file.** `data class` when it carries values, `data object` when it doesn't. Never a `Xxx Events.kt` bag.
+- **Wire names are literals on the class**: `override val name = "ticket_purchased"`, `put("ryder_id", ryderId)`. Snake_case. Never derived from a Kotlin identifier.
+- **An event is a plain value.** It never holds a `Throwable`, a ViewModel, a `Context`, or anything with reference equality. Structural equality of events is relied on in tests and by the inspector.
+- **Mapping into an event is colocated with the event**, as a `fun <Source>.to<Event>(): <Event>` extension in the event's file. It is `to`, not `as`: a domain exception and an analytics event are different kinds of thing (see §1 Functions), unlike `asDomain()` / `asPresentation()` where one concept crosses a layer. The ViewModel calls `failure.toPurchaseFailed()`; it never chooses a reason string.
+- **Closed sets become enums with an explicit wire name**: `enum class Reason(val wireName: String)`, `enum class Stage(val wireName: String)`. Exhaustive `when` in the mapper, so a new case that has no analytics decision is a compile error.
+- **More than three constructor arguments → a nested `data class Params`** and a single-argument event: `TicketPurchased(TicketPurchased.Params(...))`. Contract properties (`revenue`, `currency`, `deduplicationId`) delegate to `params`.
+- **Track user actions and domain outcomes, not UI load-state edges.** A pull-to-refresh or a retry is an intent on the ViewModel; "the list finished loading" is not an event. If you need a dedupe flag to make an event fire once, the event is wrong.
+- Domain input only: an event may take a domain model or a domain exception (`TicketPurchaseException`), never a DTO, `HttpException`, or a `:core` transport type.
+
+### Vendor mapping
+
+- Factories are **dispatch only** — a `when (event)` returning `Resolution.Claimed(handler)`, `Dropped`, or `Declined`. No SDK calls inside a factory.
+- **Use Herald's stock handlers when they do exactly the job** (`TokenEventTracker`, `adjust.setters.GenericPropertySetter`, `mixpanel.trackers.GenericEventTracker`, ...). Write a custom handler class (in `vendor/<vendor>/`, one per file, named `<What><Vendor>EventTracker` / `<What><Vendor>PropertySetter`) only when the vendor needs something Herald cannot know — GA4's reserved `purchase`, Mixpanel's `people.trackCharge`. Never re-implement a stock handler as a lambda.
+- Bind factories in the feature's Koin module as the vendor factory type, **qualified with the feature name**: `factory<FirebaseEventTrackerFactory>(named("tickets")) { ... }`. Unqualified definitions of the same type override each other silently.
+- Modules that need no per-vendor mapping (`:movies`) have no `vendor/` package and no factories — the generic terminators handle them.
+
+### ViewModels and DI
+
+- ViewModels take the **capability interface** they need, never `Herald`. Parameter and property names follow the type:
+
+  | Type | Name |
+  |---|---|
+  | `EventTrackerService` | `analyticsEventService` |
+  | `PropertyTrackerService` | `analyticsPropertyService` |
+  | `ConsentService` | `analyticsConsentService` |
+  | `IdentifiableUserService` | `analyticsIdentityService` |
+  | `AnalyticsLifecycleService` | `analyticsLifecycleService` |
+
+- Tracking happens inside `intent { }` like any other work. A screen view is tracked either once per ViewModel (in the container's `onCreate`) or per resume from the Route via `TrackScreenView(event)` — pick one per screen and say which in the event's KDoc.
+- Compose code that tracks without a ViewModel uses `herald-compose`: `TrackScreenView` / `TrackOnLifecycleEvent` / `rememberTracker()`, which read `LocalEventTrackerService`. That local is provided exactly once, in `:shared`'s `setAppComposeContent`, from Koin — no other Compose code calls `koinInject()` for analytics.
+- **Consent and start-up are use cases, and use cases are called from ViewModels.** `:analytics` has its own `domain/` + `data/` layering: `Get/Set/RestoreAnalyticsConsentUseCase` over `AnalyticsConsentRepository`, and `StartAnalyticsUseCase` (`start()`, then restore consent — Herald's Adjust adapter disables the SDK in `start()`). `MainActivityViewModel` runs `StartAnalyticsUseCase` in its container's `onCreate`; the `Application` only loads `analyticsModule`. Screens take the use cases, never `ConsentService` or the repository. No lifecycle observers, no `AnalyticsStartup`-style class, no facade that mixes consent, identity, and persistence. `flush()` is not called by the app — vendors flush on their own schedule.
+- Identity (`IdentifiableUserService`) is driven by whatever owns the user session. Until an auth feature exists that is the Home demo sign-in, called directly; when it exists, analytics observes the session rather than being told about it.
+
+### Tests
+
+- ViewModel tests inject one `FakeAnalyticsProvider` (from `herald-testing`) for every capability the ViewModel takes, and assert with `assertTracked("name") { param(...) }` / `assertPropertySet(...)` / `assertNothingElseTracked()`.
+- Every colocated mapper (`toPurchaseFailed()`) gets a test per branch, like a DTO mapper. Every custom handler class gets its own test verifying the SDK call. Factory tests assert routing only (`assertIs<TokenEventTracker>(resolution.handlers.single())`).
+
+## 11. Small but non-negotiable
 
 - **No emojis in source code**, commit messages, or documentation unless the user asks. This includes log strings.
 - **No `TODO`/`FIXME` without a tracking reference** or an inline plan. A lone `// TODO` is indistinguishable from dead code and will be removed on sight.

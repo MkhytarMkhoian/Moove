@@ -20,6 +20,8 @@ fun MovieListRoute(
     MovieListScreen(
         lazyMovies = lazyMovies,
         onMovieClick = viewModel::onMovieClick,
+        onRefresh = viewModel::onRefresh,
+        onRetry = viewModel::onRetry,
         scaffoldState = scaffoldState,
     )
 

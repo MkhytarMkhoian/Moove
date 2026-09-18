@@ -8,6 +8,11 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        // Herald is consumed from ~/.m2 until its first Maven Central release; publish it there
+        // with `./gradlew publishToMavenLocal` in the herald repository.
+        mavenLocal {
+            content { includeGroup 'io.github.mkhytarmkhoian' }
+        }
         google()
         mavenCentral()
     }
@@ -20,3 +25,4 @@ include ':design-system'
 include ':tickets'
 include ':movies'
 include ':core'
+include ':analytics'

@@ -17,6 +17,10 @@ class HomeNavigator(
         navController.navigateSafely(HomeFragmentDirections.actionHomeFragmentToMoviesFlow())
     }
 
+    fun goInspector() {
+        navController.navigateSafely(HomeFragmentDirections.actionHomeFragmentToInspectorFragment())
+    }
+
     override fun goBack() {
         screenNavigator.goBack()
     }

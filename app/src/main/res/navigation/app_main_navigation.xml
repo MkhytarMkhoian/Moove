@@ -17,7 +17,16 @@
         <action
             android:id="@+id/action_homeFragment_to_movies_flow"
             app:destination="@id/movies_flow" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_inspectorFragment"
+            app:destination="@id/inspectorFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/inspectorFragment"
+        android:name="com.moove.app.feature.inspector.InspectorFragment"
+        android:label="Analytics inspector" />
 
     <action
         android:id="@+id/action_global_go_home"

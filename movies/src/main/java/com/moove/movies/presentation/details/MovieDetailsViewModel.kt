@@ -3,10 +3,12 @@ package com.moove.movies.presentation.details
 import androidx.lifecycle.ViewModel
 import com.moove.core.exception.ExceptionHandler
 import com.moove.core.exception.asCoroutineExceptionHandler
+import com.moove.movies.analytics.event.MovieDetailsRetried
 import com.moove.movies.domain.use_cases.GetMovieDetailsUseCase
 import com.moove.movies.presentation.details.model.asPresentation
 import com.moove.shared.presentation.compose.component.ScreenContentStatus
 import com.moove.shared.presentation.viewmodel.executeUseCase
+import io.github.mkhytarmkhoian.herald.EventTrackerService
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.Syntax
@@ -16,6 +18,7 @@ class MovieDetailsViewModel(
     private val exceptionHandler: ExceptionHandler,
     private val movieId: Long,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    private val analyticsEventService: EventTrackerService,
 ) : ViewModel(), ContainerHost<MovieDetailsState, MovieDetailsEffect> {
 
     override val container: Container<MovieDetailsState, MovieDetailsEffect> = container(
@@ -28,7 +31,10 @@ class MovieDetailsViewModel(
         fetchDetails()
     }
 
-    fun onRetry() = intent { fetchDetails() }
+    fun onRetry() = intent {
+        analyticsEventService.track(MovieDetailsRetried(movieId))
+        fetchDetails()
+    }
 
     fun onBack() = intent { postSideEffect(MovieDetailsEffect.GoBack) }
 

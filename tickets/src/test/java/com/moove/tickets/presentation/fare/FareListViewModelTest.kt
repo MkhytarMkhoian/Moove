@@ -7,6 +7,7 @@ import com.moove.tickets.domain.model.Ryder
 import com.moove.tickets.domain.model.randomRyder
 import com.moove.tickets.domain.use_cases.GetFaresByIdUseCase
 import com.moove.tickets.presentation.fare.model.asPresentation
+import io.github.mkhytarmkhoian.herald.testing.FakeAnalyticsProvider
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -30,12 +31,14 @@ class FareListViewModelTest {
 
     private val getFaresByIdUseCase: GetFaresByIdUseCase = mockk(relaxed = true)
     private val exceptionHandler = mockk<ExceptionHandler>(relaxed = true)
+    private val analytics = FakeAnalyticsProvider()
 
 
     private fun createViewModel() = FareListViewModel(
         exceptionHandler = exceptionHandler,
         getFaresByIdUseCase = getFaresByIdUseCase,
         ryderId = ryderId,
+        analyticsEventService = analytics,
     )
 
     @Test
@@ -77,6 +80,12 @@ class FareListViewModelTest {
                     fare = fare.asPresentation()
                 )
             )
+        }
+
+        analytics.assertTracked("fare_selected") {
+            param("ryder_id", ryder.id)
+            param("fare", fare.asPresentation().description)
+            param("price", fare.asPresentation().price.toDouble())
         }
     }
 }

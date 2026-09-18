@@ -4,9 +4,13 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class HomeState : Parcelable
+data class HomeState(
+    val analyticsEnabled: Boolean = false,
+    val signedInUserId: String? = null,
+) : Parcelable
 
 sealed class HomeEffect {
     data object GoToRyderList : HomeEffect()
     data object GoToMovieList : HomeEffect()
+    data object GoToInspector : HomeEffect()
 }

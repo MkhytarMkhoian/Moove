@@ -23,17 +23,10 @@ paging = "3.5.1"
 retrofit = "3.0.0"
 moshi = "1.15.2"
 moshi_sealed = "0.37.0"
-room = "2.8.5"
 # services
 firebase = "34.19.0"
-# checks
-lint = "32.4.0"
-core-ktx = "1.19.0"
-junit = "4.13.2"
-androidx-test-ext-junit = "1.3.0"
-espresso-core = "3.7.0"
-appcompat = "1.8.0"
-material = "1.14.0"
+# analytics
+herald = "0.1.0-SNAPSHOT"
 
 [libraries]
 # core
@@ -51,7 +44,6 @@ androidx-browser = "androidx.browser:browser:1.10.0"
 android-tools-desugar = "com.android.tools:desugar_jdk_libs:2.1.5"
 # kotlin
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-compose-compiler-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -96,9 +88,6 @@ google-accompanist-placeholder-material = { module = "com.google.accompanist:acc
 coil = "io.coil-kt:coil-compose:2.7.0"
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
-lottie-compose = "com.airbnb.android:lottie-compose:6.7.1"
-maps-compose = "com.google.maps.android:maps-compose:8.6.0"
-maps-utils = "com.google.maps.android:android-maps-utils:5.2.0"
 # network
 retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
@@ -109,53 +98,26 @@ moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "mosh
 moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "moshi" }
 moshi-adapters-x = { module = "dev.zacsweers.moshix:moshi-adapters", version.ref = "moshi_sealed" }
 moshi-sealed-runtime = { module = "dev.zacsweers.moshix:moshi-sealed-runtime", version.ref = "moshi_sealed" }
-moshi-sealed-codegen = { module = "dev.zacsweers.moshix:moshi-sealed-codegen", version.ref = "moshi_sealed" }
 moshi-compiler = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
-# disk
-androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
-# security
-androidx-security-crypto = "androidx.security:security-crypto:1.1.0"
-google-tink = "com.google.crypto.tink:tink-android:1.23.0"
 # services
 firebase-platform = { module = "com.google.firebase:firebase-bom", version.ref = "firebase" }
 firebase-dynamic-links = "com.google.firebase:firebase-dynamic-links:22.1.0" # last release; gone from BOM 34
-firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
-firebase-config = { module = "com.google.firebase:firebase-config" }
-firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
-firebase-perf = { module = "com.google.firebase:firebase-perf" }
-firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
-firebase-inappmessaging = { module = "com.google.firebase:firebase-inappmessaging-display" }
-firebase-installations = { module = "com.google.firebase:firebase-installations" }
-playservices-base = "com.google.android.gms:play-services-base:18.10.1"
-playservices-tasks = "com.google.android.gms:play-services-tasks:18.4.1"
-playservices-location = "com.google.android.gms:play-services-location:21.4.0"
-playservices-maps = "com.google.android.gms:play-services-maps:20.0.0"
-playservices-review = "com.google.android.play:review-ktx:2.0.2"
-playservices-ads-identifier = "com.google.android.gms:play-services-ads-identifier:18.3.0"
-install-referrer = "com.android.installreferrer:installreferrer:2.2"
-# tools
-timber = "com.jakewharton.timber:timber:5.0.1"
-# checks
-lint-core = { module = "com.android.tools.lint:lint", version.ref = "lint" }
-lint-api = { module = "com.android.tools.lint:lint-api", version.ref = "lint" }
-lint-checks = { module = "com.android.tools.lint:lint-checks", version.ref = "lint" }
-lint-tests = { module = "com.android.tools.lint:lint-tests", version.ref = "lint" }
+# analytics
+herald-core = { module = "io.github.mkhytarmkhoian:herald-core", version.ref = "herald" }
+herald-compose = { module = "io.github.mkhytarmkhoian:herald-compose", version.ref = "herald" }
+herald-log = { module = "io.github.mkhytarmkhoian:herald-log", version.ref = "herald" }
+herald-firebase = { module = "io.github.mkhytarmkhoian:herald-firebase", version.ref = "herald" }
+herald-mixpanel = { module = "io.github.mkhytarmkhoian:herald-mixpanel", version.ref = "herald" }
+herald-adjust = { module = "io.github.mkhytarmkhoian:herald-adjust", version.ref = "herald" }
+herald-testing = { module = "io.github.mkhytarmkhoian:herald-testing", version.ref = "herald" }
 # test core
 junit = "junit:junit:4.13.2"
 androidx-test-junit = "androidx.test.ext:junit:1.3.0"
 androidx-test-espresso = "androidx.test.espresso:espresso-core:3.7.0"
 # test utils
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-turbine = "app.cash.turbine:turbine:1.2.1"
 mockk = "io.mockk:mockk:1.14.11"
 javafaker = "com.github.javafaker:javafaker:1.0.2"
-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
-junit-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
 koin = ["koin-core", "koin-android", "koin-compose", "koin-compose-viewmodel"]
@@ -187,9 +149,7 @@ google-accompanist = [
     "google-accompanist-webview",
     "google-accompanist-placeholder-material"
 ]
-lint = ["lint-api", "lint-checks"]
-tests-lint = ["lint-core", "lint-tests"]
 tests-unit = ["junit", "javafaker", "mockk", "kotlin-test", "kotlin-coroutines-test"]
-tests-viewmodel = ["orbit-test"]
+tests-viewmodel = ["orbit-test", "herald-testing"]
 tests-android = ["androidx-test-junit", "androidx-test-espresso"]
 paging = ["paging-runtime", "paging-compose"]

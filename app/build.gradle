@@ -46,6 +46,12 @@ dependencies {
     implementation libs.bundles.koin
     // endregion
 
+    // region analytics
+    implementation project(':analytics')
+    implementation libs.herald.core
+    implementation libs.herald.adjust // AdRevenueEvent, for the inspector's simulated impression
+    // endregion
+
     // region presentation
     implementation libs.orbit.viewmodel
     testImplementation libs.orbit.test

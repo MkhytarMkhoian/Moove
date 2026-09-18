@@ -29,6 +29,8 @@ dependencies {
 
     implementation project(':shared')
 
+    implementation libs.herald.core
+
     ksp libs.moshi.compiler
 
     testImplementation libs.bundles.tests.unit
