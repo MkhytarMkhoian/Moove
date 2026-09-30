@@ -26,7 +26,7 @@ moshi_sealed = "0.37.0"
 # services
 firebase = "34.19.0"
 # analytics
-herald = "0.1.0-SNAPSHOT"
+herald = "1.1.0"
 
 [libraries]
 # core
@@ -109,6 +109,8 @@ herald-log = { module = "io.github.mkhytarmkhoian:herald-log", version.ref = "he
 herald-firebase = { module = "io.github.mkhytarmkhoian:herald-firebase", version.ref = "herald" }
 herald-mixpanel = { module = "io.github.mkhytarmkhoian:herald-mixpanel", version.ref = "herald" }
 herald-adjust = { module = "io.github.mkhytarmkhoian:herald-adjust", version.ref = "herald" }
+herald-amplitude = { module = "io.github.mkhytarmkhoian:herald-amplitude", version.ref = "herald" }
+herald-appsflyer = { module = "io.github.mkhytarmkhoian:herald-appsflyer", version.ref = "herald" }
 herald-testing = { module = "io.github.mkhytarmkhoian:herald-testing", version.ref = "herald" }
 # test core
 junit = "junit:junit:4.13.2"

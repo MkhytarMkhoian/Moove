@@ -1,7 +1,7 @@
-package com.moove.app.feature.inspector
+package com.moove.inspector.presentation
 
 import com.moove.analytics.RecentEventsProvider
-import com.moove.app.feature.inspector.model.InspectorEntryModel
+import com.moove.inspector.presentation.model.InspectorEntryModel
 import com.moove.core.exception.ExceptionHandler
 import io.github.mkhytarmkhoian.herald.AnalyticsOperation
 import io.github.mkhytarmkhoian.herald.Event

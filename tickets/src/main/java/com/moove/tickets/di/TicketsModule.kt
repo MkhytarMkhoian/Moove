@@ -14,13 +14,18 @@ import com.moove.tickets.presentation.list.RyderListNavigator
 import com.moove.tickets.presentation.list.RyderListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import com.moove.tickets.analytics.vendor.TicketsAdjustEventTrackerFactory
+import com.moove.tickets.analytics.vendor.TicketsAmplitudeEventTrackerFactory
+import com.moove.tickets.analytics.vendor.TicketsAppsFlyerEventTrackerFactory
 import com.moove.tickets.analytics.vendor.TicketsAdjustPropertySetterFactory
 import com.moove.tickets.analytics.vendor.TicketsFirebaseEventTrackerFactory
 import com.moove.tickets.analytics.vendor.TicketsMixpanelEventTrackerFactory
 import io.github.mkhytarmkhoian.herald.adjust.AdjustEventTrackerFactory
 import io.github.mkhytarmkhoian.herald.adjust.AdjustPropertySetterFactory
+import io.github.mkhytarmkhoian.herald.amplitude.AmplitudeEventTrackerFactory
+import io.github.mkhytarmkhoian.herald.appsflyer.AppsFlyerEventTrackerFactory
 import io.github.mkhytarmkhoian.herald.firebase.FirebaseEventTrackerFactory
 import io.github.mkhytarmkhoian.herald.mixpanel.MixpanelEventTrackerFactory
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -79,5 +84,9 @@ val ticketsModule = module {
     factory<AdjustEventTrackerFactory>(named(ANALYTICS_CONTRIBUTOR)) { TicketsAdjustEventTrackerFactory(get()) }
     factory<AdjustPropertySetterFactory>(named(ANALYTICS_CONTRIBUTOR)) { TicketsAdjustPropertySetterFactory(get()) }
     factory<MixpanelEventTrackerFactory>(named(ANALYTICS_CONTRIBUTOR)) { TicketsMixpanelEventTrackerFactory(get()) }
+    factory<AppsFlyerEventTrackerFactory>(named(ANALYTICS_CONTRIBUTOR)) {
+        TicketsAppsFlyerEventTrackerFactory(get(), androidContext())
+    }
+    factory<AmplitudeEventTrackerFactory>(named(ANALYTICS_CONTRIBUTOR)) { TicketsAmplitudeEventTrackerFactory(get()) }
     // endregion
 }

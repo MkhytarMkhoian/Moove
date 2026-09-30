@@ -18,7 +18,7 @@ class HomeNavigator(
     }
 
     fun goInspector() {
-        navController.navigateSafely(HomeFragmentDirections.actionHomeFragmentToInspectorFragment())
+        navController.navigateSafely(HomeFragmentDirections.actionHomeFragmentToInspectorFlow())
     }
 
     override fun goBack() {

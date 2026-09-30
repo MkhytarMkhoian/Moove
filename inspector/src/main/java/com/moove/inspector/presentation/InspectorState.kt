@@ -1,7 +1,7 @@
-package com.moove.app.feature.inspector
+package com.moove.inspector.presentation
 
 import android.os.Parcelable
-import com.moove.app.feature.inspector.model.InspectorEntryModel
+import com.moove.inspector.presentation.model.InspectorEntryModel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

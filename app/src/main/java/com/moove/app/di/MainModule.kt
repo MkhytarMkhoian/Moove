@@ -2,12 +2,15 @@ package com.moove.app.di
 
 import com.moove.app.analytics.vendor.AppAdjustEventTrackerFactory
 import com.moove.app.analytics.vendor.AppAdjustPropertySetterFactory
+import com.moove.app.analytics.event.DeepLinkOpened
+import com.moove.app.analytics.event.SectionSelected
+import com.moove.analytics.vendor.appsflyer.MappedAppsFlyerEventTrackerFactory
+import com.appsflyer.share.AFInAppEventType
 import com.moove.app.feature.home.HomeNavigator
 import io.github.mkhytarmkhoian.herald.adjust.AdjustEventTrackerFactory
 import io.github.mkhytarmkhoian.herald.adjust.AdjustPropertySetterFactory
+import io.github.mkhytarmkhoian.herald.appsflyer.AppsFlyerEventTrackerFactory
 import com.moove.app.feature.home.HomeViewModel
-import com.moove.app.feature.inspector.InspectorNavigator
-import com.moove.app.feature.inspector.InspectorViewModel
 import com.moove.app.main.MainActivityViewModel
 import com.moove.app.main.MainNavigator
 import com.moove.app.navigation.AppNavigator
@@ -15,6 +18,7 @@ import com.moove.shared.navigation.GlobalAppNavigator
 import com.moove.shared.navigation.MoviesNavigator
 import com.moove.shared.navigation.ScreenNavigator
 import com.moove.shared.navigation.TicketsNavigator
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.factoryOf
@@ -49,15 +53,6 @@ val mainModule = module {
             setAnalyticsConsentUseCase = get(),
         )
     }
-    factory { InspectorNavigator(screenNavigator = get()) }
-    viewModel {
-        InspectorViewModel(
-            exceptionHandler = get(),
-            recentEvents = get(),
-            analyticsEventService = get(),
-            analyticsLifecycleService = get(),
-        )
-    }
 
     viewModel {
         MainActivityViewModel(
@@ -73,4 +68,14 @@ val mainModule = module {
     // because an unqualified definition of the same type in another module would override it.
     factory<AdjustEventTrackerFactory>(named("app")) { AppAdjustEventTrackerFactory(adjust = get()) }
     factory<AdjustPropertySetterFactory>(named("app")) { AppAdjustPropertySetterFactory() }
+    factory<AppsFlyerEventTrackerFactory>(named("app")) {
+        MappedAppsFlyerEventTrackerFactory(
+            eventNames = mapOf(
+                DeepLinkOpened::class to AFInAppEventType.RE_ENGAGE,
+                SectionSelected::class to AFInAppEventType.CONTENT_VIEW,
+            ),
+            appsFlyer = get(),
+            context = androidContext(),
+        )
+    }
 }

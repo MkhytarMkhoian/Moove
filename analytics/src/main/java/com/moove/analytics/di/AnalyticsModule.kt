@@ -35,7 +35,13 @@ import org.koin.dsl.module
  */
 fun analyticsModule(context: Context) = module {
 
-    includes(inspectorAnalyticsModule, mixpanelAnalyticsModule, adjustAnalyticsModule)
+    includes(
+        inspectorAnalyticsModule,
+        mixpanelAnalyticsModule,
+        adjustAnalyticsModule,
+        amplitudeAnalyticsModule,
+        appsFlyerAnalyticsModule,
+    )
     if (BuildConfig.DEBUG) includes(logAnalyticsModule)
     if (hasFirebaseProject(context)) includes(firebaseAnalyticsModule)
 

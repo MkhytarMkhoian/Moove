@@ -25,6 +25,7 @@ dependencies {
     implementation project(':shared')
     implementation project(':tickets')
     implementation project(':movies')
+    implementation project(':inspector')
     // endregion
 
     // region AndroidX
@@ -49,7 +50,8 @@ dependencies {
     // region analytics
     implementation project(':analytics')
     implementation libs.herald.core
-    implementation libs.herald.adjust // AdRevenueEvent, for the inspector's simulated impression
+    implementation libs.herald.adjust
+    implementation libs.herald.appsflyer
     // endregion
 
     // region presentation

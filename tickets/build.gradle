@@ -20,6 +20,8 @@ dependencies {
     implementation libs.herald.firebase
     implementation libs.herald.mixpanel
     implementation libs.herald.adjust
+    implementation libs.herald.amplitude
+    implementation libs.herald.appsflyer
 
     ksp libs.moshi.compiler
 

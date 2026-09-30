@@ -8,13 +8,16 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        // Herald is consumed from ~/.m2 until its first Maven Central release; publish it there
-        // with `./gradlew publishToMavenLocal` in the herald repository.
-        mavenLocal {
-            content { includeGroup 'io.github.mkhytarmkhoian' }
-        }
         google()
         mavenCentral()
+        // Local Herald builds, for trying a change before it's released: publish one with
+        // `./gradlew publishToMavenLocal -Pversion=1.2.0-SNAPSHOT` in the herald repository and
+        // set that version in gradle/libs.versions.toml. Snapshots only, so a release always
+        // comes from Maven Central.
+        mavenLocal {
+            content { includeGroup 'io.github.mkhytarmkhoian' }
+            mavenContent { snapshotsOnly() }
+        }
     }
 }
 
@@ -26,3 +29,4 @@ include ':tickets'
 include ':movies'
 include ':core'
 include ':analytics'
+include ':inspector'

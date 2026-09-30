@@ -8,6 +8,7 @@ import com.moove.app.di.exceptionsModule
 import com.moove.app.di.mainModule
 import com.moove.app.di.netModule
 import com.moove.movies.di.moviesModule
+import com.moove.inspector.di.inspectorModule
 import com.moove.tickets.di.ticketsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -27,6 +28,7 @@ open class MooveApp : Application() {
                 coroutineModule,
                 exceptionsModule,
                 ticketsModule,
+                inspectorModule,
                 moviesModule,
                 netModule,
                 deepLinkModule,

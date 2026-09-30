@@ -1,9 +1,9 @@
-package com.moove.app.feature.inspector
+package com.moove.inspector.presentation
 
 import androidx.lifecycle.ViewModel
 import com.moove.analytics.RecentEventsProvider
-import com.moove.app.analytics.event.AdImpressionSimulated
-import com.moove.app.feature.inspector.model.asPresentation
+import com.moove.inspector.analytics.event.AdImpressionSimulated
+import com.moove.inspector.presentation.model.asPresentation
 import com.moove.core.exception.ExceptionHandler
 import com.moove.core.exception.asCoroutineExceptionHandler
 import io.github.mkhytarmkhoian.herald.AnalyticsLifecycleService
@@ -14,7 +14,7 @@ import org.orbitmvi.orbit.viewmodel.container
 
 /**
  * Mirrors the in-house provider's timeline into state and offers the two calls no screen would
- * otherwise make: a simulated ad impression (the `AdRevenueEvent` path) and a manual flush.
+ * otherwise make: a simulated ad impression (the ad-revenue path) and a manual flush.
  */
 class InspectorViewModel(
     exceptionHandler: ExceptionHandler,

@@ -1,4 +1,4 @@
-package com.moove.app.feature.inspector.model
+package com.moove.inspector.presentation.model
 
 import android.os.Parcelable
 import com.moove.analytics.RecentEventsProvider.Entry

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/inspector_flow"
+    app:startDestination="@id/inspectorFragment">
+
+    <fragment
+        android:id="@+id/inspectorFragment"
+        android:name="com.moove.inspector.presentation.InspectorFragment"
+        android:label="Analytics inspector" />
+
+</navigation>

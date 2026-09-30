@@ -1,4 +1,4 @@
-package com.moove.app.feature.inspector.model
+package com.moove.inspector.presentation.model
 
 internal val fakeInspectorEntryModels = listOf(
     InspectorEntryModel(

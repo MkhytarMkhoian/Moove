@@ -16,9 +16,9 @@ class PurchaseFirebaseEventTracker(
 
     override suspend fun track() {
         val bundle = event.parameters.toBundle().apply {
-            putDouble(FirebaseAnalytics.Param.VALUE, event.revenue)
-            putString(FirebaseAnalytics.Param.CURRENCY, event.currency)
-            putString(FirebaseAnalytics.Param.TRANSACTION_ID, event.deduplicationId)
+            putDouble(FirebaseAnalytics.Param.VALUE, event.params.revenue)
+            putString(FirebaseAnalytics.Param.CURRENCY, event.params.currency)
+            putString(FirebaseAnalytics.Param.TRANSACTION_ID, event.params.transactionId)
             putLong(FirebaseAnalytics.Param.QUANTITY, event.params.count.toLong())
         }
         analytics.logEvent(FirebaseAnalytics.Event.PURCHASE, bundle)

@@ -12,7 +12,7 @@ class ChargeMixpanelEventTrackerTest {
     private val mixpanel: MixpanelAPI = mockk(relaxed = true)
     private val purchase = TicketPurchased(
         TicketPurchased.Params(
-            ryderId = "r1", fare = "Adult", count = 2, revenue = 9.98, currency = "USD", deduplicationId = "txn-1",
+            ryderId = "r1", fare = "Adult", count = 2, revenue = 9.98, currency = "USD", transactionId = "txn-1",
         )
     )
 

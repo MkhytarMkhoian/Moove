@@ -84,7 +84,7 @@ class ConfirmationViewModel(
                             count = state.ticketCount,
                             revenue = state.totalPrice.toDouble(),
                             currency = CURRENCY,
-                            deduplicationId = receipt.transactionId,
+                            transactionId = receipt.transactionId,
                         )
                     )
                 )

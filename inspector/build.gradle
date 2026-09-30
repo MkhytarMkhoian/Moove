@@ -1,0 +1,25 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.plugin.parcelize'
+}
+
+apply from: "${rootProject.projectDir}/gradle/base-android-config.gradle"
+apply from: "${rootProject.projectDir}/gradle/compose-android-config.gradle"
+
+android {
+    namespace 'com.moove.inspector'
+}
+
+dependencies {
+
+    implementation project(':shared')
+    implementation project(':analytics')
+
+    implementation libs.herald.core
+    implementation libs.herald.adjust
+    implementation libs.herald.appsflyer
+
+    testImplementation libs.bundles.tests.unit
+    testImplementation libs.bundles.tests.viewmodel
+    androidTestImplementation libs.bundles.tests.android
+}

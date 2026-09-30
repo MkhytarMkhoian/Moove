@@ -1,4 +1,4 @@
-package com.moove.app.feature.inspector
+package com.moove.inspector.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

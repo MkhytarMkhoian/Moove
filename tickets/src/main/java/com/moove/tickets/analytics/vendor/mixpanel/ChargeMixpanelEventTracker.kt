@@ -14,6 +14,6 @@ class ChargeMixpanelEventTracker(
 ) : MixpanelEventTracker {
 
     override suspend fun track() {
-        mixpanel.people.trackCharge(event.revenue, null)
+        mixpanel.people.trackCharge(event.params.revenue, null)
     }
 }

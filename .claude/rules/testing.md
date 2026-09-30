@@ -23,11 +23,11 @@ Use the existing bundles, not individual entries:
 
 ```groovy
 testImplementation libs.bundles.tests.unit        // junit, javafaker, mockk, kotlin-test, kotlin-coroutines-test
-testImplementation libs.bundles.tests.viewmodel   // orbit-test — add when the module has Orbit ViewModels
+testImplementation libs.bundles.tests.viewmodel   // orbit-test, herald-testing — add when the module has Orbit ViewModels
 androidTestImplementation libs.bundles.tests.android  // androidx-test-junit, androidx-test-espresso
 ```
 
-Truth, AssertJ, Kotest, and Hamcrest are not in the catalog and should not be added. Turbine is declared but currently unused — for state and side-effect Flows, use orbit-test's DSL instead of collecting Flows by hand.
+Truth, AssertJ, Kotest, Hamcrest, and Turbine are not in the catalog and should not be added — for state and side-effect Flows, use orbit-test's DSL instead of collecting Flows by hand.
 
 ## 3. Naming
 

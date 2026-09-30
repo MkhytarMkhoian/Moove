@@ -5,7 +5,6 @@ import com.adjust.sdk.AdjustConfig
 import com.adjust.sdk.AdjustInstance
 import com.adjust.sdk.LogLevel
 import io.github.mkhytarmkhoian.herald.Herald
-import io.github.mkhytarmkhoian.herald.adjust.AdRevenueAdjustEventTrackerFactory
 import io.github.mkhytarmkhoian.herald.adjust.AdjustAnalyticsService
 import io.github.mkhytarmkhoian.herald.adjust.AdjustAnalyticsTrackerService
 import io.github.mkhytarmkhoian.herald.adjust.AdjustEventTrackerFactory
@@ -33,7 +32,6 @@ val adjustAnalyticsModule = module {
 
     single<AdjustAnalyticsTrackerService> {
         adjustTracker(
-            adjust = get(),
             featureEventFactories = getAll(),
             featurePropertyFactories = getAll(),
         )
@@ -55,16 +53,16 @@ val adjustAnalyticsModule = module {
     }
 }
 
+/**
+ * Adjust is opt-in: an event reaches it only when a feature claims it. Properties are strict: one
+ * nobody mapped fails loudly.
+ */
 internal fun adjustTracker(
-    adjust: AdjustInstance,
     featureEventFactories: List<AdjustEventTrackerFactory>,
     featurePropertyFactories: List<AdjustPropertySetterFactory>,
 ) = AdjustAnalyticsTrackerService(
     eventTrackerFactory = CompositeAdjustEventTrackerFactory(
-        factories = buildList {
-            add(AdRevenueAdjustEventTrackerFactory(adjust))
-            addAll(featureEventFactories)
-        },
+        factories = featureEventFactories,
     ),
     propertySetterFactory = CompositeAdjustPropertySetterFactory(
         factories = buildList {

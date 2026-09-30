@@ -1,4 +1,4 @@
-package com.moove.app.feature.inspector
+package com.moove.inspector.presentation
 
 import android.os.Bundle
 import android.view.View

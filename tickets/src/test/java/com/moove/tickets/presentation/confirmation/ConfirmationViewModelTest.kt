@@ -78,7 +78,7 @@ class ConfirmationViewModelTest {
             param("total", defaultState.totalPrice.toDouble())
         }
         val purchased = analytics.records.filterIsInstance<AnalyticsRecord.Tracked>().single { it.event is TicketPurchased }
-        assertEquals("txn-1", (purchased.event as TicketPurchased).deduplicationId)
+        assertEquals("txn-1", (purchased.event as TicketPurchased).params.transactionId)
         analytics.assertNothingElseTracked()
         analytics.assertPropertySet("tickets_purchased", 1)
         analytics.assertPropertySet("seat_preference", "window")
